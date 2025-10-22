@@ -318,24 +318,6 @@
   
 </section>
 
-
-
-<nav class="pagination">
-  
-
-  
-    <a class="page-num active" href="https://huyentrang-3331.github.io/MyWebBlog/tags/javascript/">1</a>
-  
-    <a class="page-num " href="https://huyentrang-3331.github.io/MyWebBlog/tags/javascript/page/2/">2</a>
-  
-
-  
-    <a class="page-btn next" href="https://huyentrang-3331.github.io/MyWebBlog/tags/javascript/page/2/">Tiếp →</a>
-  
-</nav>
-
-
-
   
   <aside class="sidebar">
   <div class="inner">
@@ -358,6 +340,26 @@
   </div>
 </aside>
 </main>
+
+
+
+<nav class="pagination">
+  
+
+  
+    <a class="page-num active" href="https://huyentrang-3331.github.io/MyWebBlog/tags/javascript/">1</a>
+  
+    <a class="page-num " href="https://huyentrang-3331.github.io/MyWebBlog/tags/javascript/page/2/">2</a>
+  
+
+  
+    <a class="page-btn next" href="https://huyentrang-3331.github.io/MyWebBlog/tags/javascript/page/2/">Tiếp →</a>
+  
+</nav>
+
+
+
+
 
 
 <style>
@@ -539,6 +541,83 @@ aside .inner:hover {
 
    
   border-color: rgba(37, 99, 235, 0.9);
+}
+ 
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+  justify-content: center;    
+  align-content: start;       
+  align-items: start;         
+}
+
+ 
+.post-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;  
+  background: var(--bg-card);
+  border-radius: 1.2rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1.5px solid rgba(15, 23, 42, 0.8);
+  transition: all 0.3s ease;
+}
+
+ 
+.post-thumb {
+  width: 100%;
+  height: 220px;  
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.post-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.post-card:hover .post-thumb img {
+  transform: scale(1.05);
+}
+
+ 
+.post-body {
+  flex: 1;
+  padding: 1.6rem 1.5rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+ 
+.post-body p {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;  
+  -webkit-box-orient: vertical;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+ 
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+ 
+.post-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(37, 99, 235, 0.8);
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.15);
 }
 
  
@@ -788,6 +867,9 @@ body.dark .pagination .active {
   background: linear-gradient(90deg, #3b82f6, #1d4ed8);
   border-color: transparent;
 }
+
+
+
 
 </style>
 
