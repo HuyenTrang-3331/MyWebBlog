@@ -415,6 +415,149 @@ body.dark .progress-bar {
   .header img{margin:0 0 15px}
   .header .blue-bar{width:100%;height:220px}
 }
+ 
+.scholarship-section {
+  padding: 60px 10%;
+  background: linear-gradient(180deg, #f9fafb 0%, #eef2ff 100%);
+  border-radius: 16px;
+  text-align: center;
+}
+.scholarship-section h2 {
+  font-size: 2rem;
+  color: #1e3a8a;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+.sub-note {
+  color: #2563eb;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+}
+.scholarship-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
+.scholarship-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.scholarship-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+.img-wrapper {
+  position: relative;
+}
+.scholarship-img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  background-color: #f1f5f9;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  cursor: pointer;
+}
+.scholarship-card:hover .scholarship-img {
+  transform: scale(1.03);
+  filter: brightness(1.08);
+}
+.ribbon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.scholarship-info {
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+}
+.scholarship-info h4 {
+  color: #1e3a8a;
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+}
+.scholarship-info p {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+ 
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.popup img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+.popup p {
+  color: #f1f5f9;
+  margin-top: 1rem;
+}
+.close-btn {
+  position: absolute;
+  top: 25px; right: 40px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+ 
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+
+body.dark .scholarship-card {
+  background: #1e293b;
+  box-shadow: 0 6px 16px rgba(255,255,255,0.05);
+}
+body.dark .scholarship-info h4 { color: #93c5fd; }
+body.dark .scholarship-info p { color: #cbd5e1; }
+
+@media(max-width:768px){
+  .scholarship-img{height:200px}
+}
 </style>
 
 <div class="cv-container">
@@ -517,6 +660,127 @@ body.dark .progress-bar {
     </div>
   </div>
 </div>
+
+<section class="scholarship-section">
+  <h2>🎓 Học bổng & Thành tích</h2>
+  <p class="sub-note">🏅 3 năm liên tiếp đạt học bổng xuất sắc (2023–2025)</p>
+
+  <div class="scholarship-grid">
+    <div class="scholarship-card fade-up">
+      <div class="img-wrapper">
+        <img src="https://huyentrang-3331.github.io/MyWebBlog/images/scholarship2.jpg" alt="Học bổng Cao su Việt Nam — 2023" class="scholarship-img">
+        <div class="ribbon">2023</div>
+      </div>
+      <div class="scholarship-info">
+        <h4>🏆 Học bổng Cao su Việt Nam — Hội Khuyến học 28/10</h4>
+        <p>Thành tích học tập xuất sắc năm học 2022–2023, góp phần lan tỏa tinh thần hiếu học trong cộng đồng sinh viên.</p>
+      </div>
+    </div>
+
+    <div class="scholarship-card fade-up delay-1">
+      <div class="img-wrapper">
+        <img src="https://huyentrang-3331.github.io/MyWebBlog/images/scholarship1.jpg" alt="Học bổng Cao su Việt Nam — 2024" class="scholarship-img">
+        <div class="ribbon">2024</div>
+      </div>
+      <div class="scholarship-info">
+        <h4>🥇 Học bổng Cao su Việt Nam — Hội Khuyến học 28/10</h4>
+        <p>Được trao tặng vì thành tích học tập vượt trội năm học 2023–2024, thể hiện tinh thần nỗ lực và sáng tạo không ngừng.</p>
+      </div>
+    </div>
+
+    <div class="scholarship-card fade-up delay-2">
+      <div class="img-wrapper">
+        <img src="https://huyentrang-3331.github.io/MyWebBlog/images/scholarship1.jpg" alt="Học bổng Cao su Việt Nam — 2025" class="scholarship-img">
+        <div class="ribbon">2025</div>
+      </div>
+      <div class="scholarship-info">
+        <h4>🎖️ Học bổng Cao su Việt Nam — Hội Khuyến học 28/10</h4>
+        <p>Tiếp tục đạt học bổng Xuất sắc năm học 2024–2025, với kết quả học tập nổi bật và tinh thần cầu tiến.</p>
+      </div>
+    </div>
+
+    <div class="scholarship-card">
+      <div class="img-wrapper">
+        <img src="https://huyentrang-3331.github.io/MyWebBlog/images/certificate-database.png" alt="Chứng nhận Cuộc thi Database Design Champion 2024 - HUTECH" class="scholarship-img">
+        <div class="ribbon">2024</div>
+      </div>
+      <div class="scholarship-info">
+        <h4>🏆 Cuộc thi “Database Design Champion 2024” — HUTECH</h4>
+        <p>Nhận chứng nhận từ CLB Hệ thống Thông tin HUTECH cho thành tích tham gia và trình bày mô hình cơ sở dữ liệu tối ưu sử dụng <strong>MySQL</strong> và <strong>ERD</strong>.</p>
+      </div>
+    </div>
+
+    
+    <div class="scholarship-card fade-up delay-1">
+      <div class="img-wrapper">
+        <img src="https://huyentrang-3331.github.io/MyWebBlog/images/certificate-genz.png" alt="Cuộc thi học thuật GEN Z’s Thinking 2024 - HUTECH" class="scholarship-img">
+        <div class="ribbon">2024</div>
+      </div>
+      <div class="scholarship-info">
+        <h4>🎖️ Cuộc thi “Gen Z’s Thinking 2024” — HUTECH</h4>
+        <p>Tham gia chương trình học thuật do Khoa CNTT tổ chức, thể hiện tư duy phản biện và kỹ năng thuyết trình sáng tạo trong môi trường công nghệ.</p>
+      </div>
+    </div>
+
+    
+    <div class="scholarship-card fade-up delay-2">
+      <div class="img-wrapper">
+        <img src="https://huyentrang-3331.github.io/MyWebBlog/images/certificate-netcracking.png" alt="Cuộc thi HUTECH’s Net Cracking Challenges 2024" class="scholarship-img">
+        <div class="ribbon">2024</div>
+      </div>
+      <div class="scholarship-info">
+        <h4>💻 Cuộc thi “HUTECH’s Net Cracking Challenges 2024”</h4>
+        <p>Nhận giấy khen từ Bộ môn Mạng máy tính HUTECH khi tham gia cuộc thi an ninh mạng nội bộ, rèn luyện kỹ năng phân tích và xử lý vấn đề trong môi trường <strong>Networking & Security</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<div id="img-popup" class="popup">
+  <span class="close-btn">&times;</span>
+  <img id="popup-img" src="" alt="">
+  <p id="popup-caption"></p>
+  <div class="nav-btn prev">❮</div>
+  <div class="nav-btn next">❯</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("img-popup");
+  const popupImg = document.getElementById("popup-img");
+  const popupCaption = document.getElementById("popup-caption");
+  const closeBtn = document.querySelector(".close-btn");
+  const images = Array.from(document.querySelectorAll(".scholarship-img"));
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+  let currentIndex = 0;
+
+  function showPopup(index) {
+    popup.style.display = "flex";
+    popupImg.src = images[index].src;
+    popupCaption.textContent = images[index].alt;
+    currentIndex = index;
+  }
+  images.forEach((img, i) => img.addEventListener("click", () => showPopup(i)));
+  closeBtn.addEventListener("click", () => popup.style.display = "none");
+  popup.addEventListener("click", e => { if (e.target === popup) popup.style.display = "none"; });
+  prevBtn.addEventListener("click", () => showPopup((currentIndex - 1 + images.length) % images.length));
+  nextBtn.addEventListener("click", () => showPopup((currentIndex + 1) % images.length));
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+});
+</script>
+
 
   </main>
 
