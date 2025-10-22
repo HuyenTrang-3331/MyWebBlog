@@ -2,465 +2,465 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Lê Thị Huyền Trang</title>
-    <link>https://example.org/tags/</link>
+    <link>https://huyentrang-3331.github.io/MyWebBlog/tags/</link>
     <description>Recent content in Tags on Lê Thị Huyền Trang</description>
     <generator>Hugo -- 0.150.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://huyentrang-3331.github.io/MyWebBlog/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Collectors</title>
-      <link>https://example.org/tags/collectors/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/collectors/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/collectors/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/collectors/</guid>
       <description></description>
     </item>
     <item>
       <title>Functional Programming</title>
-      <link>https://example.org/tags/functional-programming/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/functional-programming/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/functional-programming/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/functional-programming/</guid>
       <description></description>
     </item>
     <item>
       <title>Hiệu Năng</title>
-      <link>https://example.org/tags/hi%E1%BB%87u-n%C4%83ng/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/hi%E1%BB%87u-n%C4%83ng/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/hi%E1%BB%87u-n%C4%83ng/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/hi%E1%BB%87u-n%C4%83ng/</guid>
       <description></description>
     </item>
     <item>
       <title>Java</title>
-      <link>https://example.org/tags/java/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/java/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/java/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/java/</guid>
       <description></description>
     </item>
     <item>
       <title>Java 8</title>
-      <link>https://example.org/tags/java-8/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/java-8/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/java-8/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/java-8/</guid>
       <description></description>
     </item>
     <item>
       <title>JavaScript</title>
-      <link>https://example.org/tags/javascript/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/javascript/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/javascript/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/javascript/</guid>
       <description></description>
     </item>
     <item>
       <title>Optimization</title>
-      <link>https://example.org/tags/optimization/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/optimization/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/optimization/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/optimization/</guid>
       <description></description>
     </item>
     <item>
       <title>Stream</title>
-      <link>https://example.org/tags/stream/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/stream/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/stream/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/stream/</guid>
       <description></description>
     </item>
     <item>
       <title>Tối Ưu</title>
-      <link>https://example.org/tags/t%E1%BB%91i-%C6%B0u/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/t%E1%BB%91i-%C6%B0u/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/t%E1%BB%91i-%C6%B0u/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/t%E1%BB%91i-%C6%B0u/</guid>
       <description></description>
     </item>
     <item>
       <title>Web Performance</title>
-      <link>https://example.org/tags/web-performance/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/web-performance/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/web-performance/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/web-performance/</guid>
       <description></description>
     </item>
     <item>
       <title>ECMAScript</title>
-      <link>https://example.org/tags/ecmascript/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/ecmascript/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/ecmascript/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/ecmascript/</guid>
       <description></description>
     </item>
     <item>
       <title>ES6</title>
-      <link>https://example.org/tags/es6/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/es6/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/es6/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/es6/</guid>
       <description></description>
     </item>
     <item>
       <title>Generics</title>
-      <link>https://example.org/tags/generics/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/generics/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/generics/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/generics/</guid>
       <description></description>
     </item>
     <item>
       <title>Modern JS</title>
-      <link>https://example.org/tags/modern-js/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/modern-js/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/modern-js/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/modern-js/</guid>
       <description></description>
     </item>
     <item>
       <title>Parameterized Types</title>
-      <link>https://example.org/tags/parameterized-types/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/parameterized-types/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/parameterized-types/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/parameterized-types/</guid>
       <description></description>
     </item>
     <item>
       <title>Syntax</title>
-      <link>https://example.org/tags/syntax/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/syntax/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/syntax/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/syntax/</guid>
       <description></description>
     </item>
     <item>
       <title>Type Safety</title>
-      <link>https://example.org/tags/type-safety/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/type-safety/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/type-safety/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/type-safety/</guid>
       <description></description>
     </item>
     <item>
       <title>Debug</title>
-      <link>https://example.org/tags/debug/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/debug/</link>
       <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/debug/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/debug/</guid>
       <description></description>
     </item>
     <item>
       <title>Error Handling</title>
-      <link>https://example.org/tags/error-handling/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/error-handling/</link>
       <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/error-handling/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/error-handling/</guid>
       <description></description>
     </item>
     <item>
       <title>Functional Interface</title>
-      <link>https://example.org/tags/functional-interface/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/functional-interface/</link>
       <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/functional-interface/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/functional-interface/</guid>
       <description></description>
     </item>
     <item>
       <title>Lambda</title>
-      <link>https://example.org/tags/lambda/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/lambda/</link>
       <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/lambda/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/lambda/</guid>
       <description></description>
     </item>
     <item>
       <title>Promise</title>
-      <link>https://example.org/tags/promise/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/promise/</link>
       <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/promise/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/promise/</guid>
       <description></description>
     </item>
     <item>
       <title>Try...catch</title>
-      <link>https://example.org/tags/try...catch/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/try...catch/</link>
       <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/try...catch/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/try...catch/</guid>
       <description></description>
     </item>
     <item>
       <title>Async</title>
-      <link>https://example.org/tags/async/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/async/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/async/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/async/</guid>
       <description></description>
     </item>
     <item>
       <title>Concurrency</title>
-      <link>https://example.org/tags/concurrency/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/concurrency/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/concurrency/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/concurrency/</guid>
       <description></description>
     </item>
     <item>
       <title>Fetch API</title>
-      <link>https://example.org/tags/fetch-api/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/fetch-api/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/fetch-api/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/fetch-api/</guid>
       <description></description>
     </item>
     <item>
       <title>Multithreading</title>
-      <link>https://example.org/tags/multithreading/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/multithreading/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/multithreading/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/multithreading/</guid>
       <description></description>
     </item>
     <item>
       <title>Runnable</title>
-      <link>https://example.org/tags/runnable/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/runnable/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/runnable/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/runnable/</guid>
       <description></description>
     </item>
     <item>
       <title>Thread</title>
-      <link>https://example.org/tags/thread/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/thread/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/thread/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/thread/</guid>
       <description></description>
     </item>
     <item>
       <title>Web API</title>
-      <link>https://example.org/tags/web-api/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/web-api/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/web-api/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/web-api/</guid>
       <description></description>
     </item>
     <item>
       <title>BufferedReader</title>
-      <link>https://example.org/tags/bufferedreader/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/bufferedreader/</link>
       <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/bufferedreader/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/bufferedreader/</guid>
       <description></description>
     </item>
     <item>
       <title>DOM</title>
-      <link>https://example.org/tags/dom/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/dom/</link>
       <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/dom/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/dom/</guid>
       <description></description>
     </item>
     <item>
       <title>File I/O</title>
-      <link>https://example.org/tags/file-i/o/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/file-i/o/</link>
       <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/file-i/o/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/file-i/o/</guid>
       <description></description>
     </item>
     <item>
       <title>FileReader</title>
-      <link>https://example.org/tags/filereader/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/filereader/</link>
       <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/filereader/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/filereader/</guid>
       <description></description>
     </item>
     <item>
       <title>Files</title>
-      <link>https://example.org/tags/files/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/files/</link>
       <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/files/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/files/</guid>
       <description></description>
     </item>
     <item>
       <title>FileWriter</title>
-      <link>https://example.org/tags/filewriter/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/filewriter/</link>
       <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/filewriter/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/filewriter/</guid>
       <description></description>
     </item>
     <item>
       <title>Frontend</title>
-      <link>https://example.org/tags/frontend/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/frontend/</link>
       <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/frontend/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/frontend/</guid>
       <description></description>
     </item>
     <item>
       <title>Context</title>
-      <link>https://example.org/tags/context/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/context/</link>
       <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/context/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/context/</guid>
       <description></description>
     </item>
     <item>
       <title>Exception</title>
-      <link>https://example.org/tags/exception/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/exception/</link>
       <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/exception/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/exception/</guid>
       <description></description>
     </item>
     <item>
       <title>Function</title>
-      <link>https://example.org/tags/function/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/function/</link>
       <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/function/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/function/</guid>
       <description></description>
     </item>
     <item>
       <title>OOP</title>
-      <link>https://example.org/tags/oop/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/oop/</link>
       <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/oop/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/oop/</guid>
       <description></description>
     </item>
     <item>
       <title>This</title>
-      <link>https://example.org/tags/this/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/this/</link>
       <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/this/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/this/</guid>
       <description></description>
     </item>
     <item>
       <title>Try-Catch</title>
-      <link>https://example.org/tags/try-catch/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/try-catch/</link>
       <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/try-catch/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/try-catch/</guid>
       <description></description>
     </item>
     <item>
       <title>Collection</title>
-      <link>https://example.org/tags/collection/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/collection/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/collection/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/collection/</guid>
       <description></description>
     </item>
     <item>
       <title>Execution Context</title>
-      <link>https://example.org/tags/execution-context/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/execution-context/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/execution-context/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/execution-context/</guid>
       <description></description>
     </item>
     <item>
       <title>Hoisting</title>
-      <link>https://example.org/tags/hoisting/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/hoisting/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/hoisting/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/hoisting/</guid>
       <description></description>
     </item>
     <item>
       <title>List</title>
-      <link>https://example.org/tags/list/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/list/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/list/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/list/</guid>
       <description></description>
     </item>
     <item>
       <title>Map</title>
-      <link>https://example.org/tags/map/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/map/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/map/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/map/</guid>
       <description></description>
     </item>
     <item>
       <title>Scope</title>
-      <link>https://example.org/tags/scope/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/scope/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/scope/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/scope/</guid>
       <description></description>
     </item>
     <item>
       <title>Set</title>
-      <link>https://example.org/tags/set/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/set/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/set/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/set/</guid>
       <description></description>
     </item>
     <item>
       <title>Stream API</title>
-      <link>https://example.org/tags/stream-api/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/stream-api/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/stream-api/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/stream-api/</guid>
       <description></description>
     </item>
     <item>
       <title>Variable</title>
-      <link>https://example.org/tags/variable/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/variable/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/variable/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/variable/</guid>
       <description></description>
     </item>
     <item>
       <title>Await</title>
-      <link>https://example.org/tags/await/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/await/</link>
       <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/await/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/await/</guid>
       <description></description>
     </item>
     <item>
       <title>Inheritance</title>
-      <link>https://example.org/tags/inheritance/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/inheritance/</link>
       <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/inheritance/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/inheritance/</guid>
       <description></description>
     </item>
     <item>
       <title>Override</title>
-      <link>https://example.org/tags/override/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/override/</link>
       <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/override/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/override/</guid>
       <description></description>
     </item>
     <item>
       <title>Polymorphism</title>
-      <link>https://example.org/tags/polymorphism/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/polymorphism/</link>
       <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/polymorphism/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/polymorphism/</guid>
       <description></description>
     </item>
     <item>
       <title>Abstraction</title>
-      <link>https://example.org/tags/abstraction/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/abstraction/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/abstraction/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/abstraction/</guid>
       <description></description>
     </item>
     <item>
       <title>Closure</title>
-      <link>https://example.org/tags/closure/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/closure/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/closure/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/closure/</guid>
       <description></description>
     </item>
     <item>
       <title>Encapsulation</title>
-      <link>https://example.org/tags/encapsulation/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/encapsulation/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/encapsulation/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/encapsulation/</guid>
       <description></description>
     </item>
     <item>
       <title>Event Loop</title>
-      <link>https://example.org/tags/event-loop/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/event-loop/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/event-loop/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/event-loop/</guid>
       <description></description>
     </item>
     <item>
       <title>JVM</title>
-      <link>https://example.org/tags/jvm/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/jvm/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/jvm/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/jvm/</guid>
       <description></description>
     </item>
     <item>
       <title>Lập Trình Hướng Đối Tượng</title>
-      <link>https://example.org/tags/l%E1%BA%ADp-tr%C3%ACnh-h%C6%B0%E1%BB%9Bng-%C4%91%E1%BB%91i-t%C6%B0%E1%BB%A3ng/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/l%E1%BA%ADp-tr%C3%ACnh-h%C6%B0%E1%BB%9Bng-%C4%91%E1%BB%91i-t%C6%B0%E1%BB%A3ng/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/l%E1%BA%ADp-tr%C3%ACnh-h%C6%B0%E1%BB%9Bng-%C4%91%E1%BB%91i-t%C6%B0%E1%BB%A3ng/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/l%E1%BA%ADp-tr%C3%ACnh-h%C6%B0%E1%BB%9Bng-%C4%91%E1%BB%91i-t%C6%B0%E1%BB%A3ng/</guid>
       <description></description>
     </item>
     <item>
       <title>Macrotask</title>
-      <link>https://example.org/tags/macrotask/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/macrotask/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/macrotask/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/macrotask/</guid>
       <description></description>
     </item>
     <item>
       <title>Microtask</title>
-      <link>https://example.org/tags/microtask/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/microtask/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/microtask/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/microtask/</guid>
       <description></description>
     </item>
     <item>
       <title>Ngôn Ngữ Lập Trình</title>
-      <link>https://example.org/tags/ng%C3%B4n-ng%E1%BB%AF-l%E1%BA%ADp-tr%C3%ACnh/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/tags/ng%C3%B4n-ng%E1%BB%AF-l%E1%BA%ADp-tr%C3%ACnh/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/ng%C3%B4n-ng%E1%BB%AF-l%E1%BA%ADp-tr%C3%ACnh/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/tags/ng%C3%B4n-ng%E1%BB%AF-l%E1%BA%ADp-tr%C3%ACnh/</guid>
       <description></description>
     </item>
   </channel>

@@ -2,150 +2,150 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Blogs on Lê Thị Huyền Trang</title>
-    <link>https://example.org/blog/</link>
+    <link>https://huyentrang-3331.github.io/MyWebBlog/blog/</link>
     <description>Recent content in Blogs on Lê Thị Huyền Trang</description>
     <generator>Hugo -- 0.150.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://huyentrang-3331.github.io/MyWebBlog/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java Stream nâng cao – Grouping, Mapping và Collectors chuyên sâu</title>
-      <link>https://example.org/blog/20-stream-nang-cao/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/20-stream-nang-cao/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/20-stream-nang-cao/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/20-stream-nang-cao/</guid>
       <description>Học cách sử dụng Stream API nâng cao trong Java với grouping, partitioning, mapping và Collectors để xử lý dữ liệu hiệu quả và hiện đại.</description>
     </item>
     <item>
       <title>Tối ưu hiệu năng JavaScript – Viết code nhanh hơn, mượt hơn và thông minh hơn</title>
-      <link>https://example.org/blog/10-performance-optimization/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/10-performance-optimization/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/10-performance-optimization/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/10-performance-optimization/</guid>
       <description>Khám phá các kỹ thuật tối ưu hiệu năng JavaScript: từ việc giảm thao tác DOM, tối ưu vòng lặp, caching, debouncing, đến lazy loading. Giúp website chạy nhanh và mượt hơn.</description>
     </item>
     <item>
       <title>Generics trong Java – Viết code tổng quát và an toàn kiểu dữ liệu</title>
-      <link>https://example.org/blog/19-generics-trong-java/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/19-generics-trong-java/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/19-generics-trong-java/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/19-generics-trong-java/</guid>
       <description>Tìm hiểu Generics trong Java – giúp viết code tổng quát, an toàn kiểu dữ liệu và tái sử dụng hiệu quả. Học cách dùng &amp;lt;T&amp;gt;, &amp;lt;E&amp;gt;, &amp;lt;K,V&amp;gt; trong class, method và interface.</description>
     </item>
     <item>
       <title>Những tính năng nổi bật của ES6 – Viết JavaScript hiện đại và gọn gàng hơn</title>
-      <link>https://example.org/blog/09-es6-features/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/09-es6-features/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/09-es6-features/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/09-es6-features/</guid>
       <description>Khám phá các tính năng mới của ES6 như let/const, arrow function, template literals, destructuring, spread/rest, class, module... giúp code JavaScript hiện đại và dễ hiểu hơn.</description>
     </item>
     <item>
       <title>Lambda Expression và Functional Interface trong Java 8&#43; – Viết code ngắn gọn và hiện đại</title>
-      <link>https://example.org/blog/18-lambda-va-functional-interface/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/18-lambda-va-functional-interface/</link>
       <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/18-lambda-va-functional-interface/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/18-lambda-va-functional-interface/</guid>
       <description>Khám phá Lambda Expression và Functional Interface trong Java 8&#43;, giúp viết code ngắn gọn, rõ ràng và linh hoạt hơn trong xử lý dữ liệu và lập trình hàm.</description>
     </item>
     <item>
       <title>Xử lý lỗi trong JavaScript – Cách viết code an toàn và chuyên nghiệp</title>
-      <link>https://example.org/blog/08-error-handling/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/08-error-handling/</link>
       <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/08-error-handling/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/08-error-handling/</guid>
       <description>Học cách bắt lỗi, ném lỗi và xử lý bất đồng bộ với try...catch, throw, Promise và async/await trong JavaScript. Giúp code của bạn ổn định và dễ debug hơn.</description>
     </item>
     <item>
       <title>Đa luồng (Multithreading) trong Java – Hiểu và làm chủ Concurrency</title>
-      <link>https://example.org/blog/17-da-luong-trong-java/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/17-da-luong-trong-java/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/17-da-luong-trong-java/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/17-da-luong-trong-java/</guid>
       <description>Tìm hiểu cơ chế đa luồng (Multithreading) trong Java: Thread, Runnable, synchronized, ExecutorService và cách quản lý song song hiệu quả. Bài viết giúp bạn làm chủ concurrency trong ứng dụng thực tế.</description>
     </item>
     <item>
       <title>Fetch API trong JavaScript – Cách gọi API hiện đại và dễ hiểu nhất</title>
-      <link>https://example.org/blog/07-fetch-api/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/07-fetch-api/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/07-fetch-api/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/07-fetch-api/</guid>
       <description>Học cách sử dụng Fetch API trong JavaScript để gọi dữ liệu từ server, xử lý JSON, và làm việc với async/await một cách dễ hiểu và thực tế.</description>
     </item>
     <item>
       <title>Đọc ghi file trong Java – Làm việc với File I/O chi tiết và dễ hiểu</title>
-      <link>https://example.org/blog/16-doc-ghi-file/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/16-doc-ghi-file/</link>
       <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/16-doc-ghi-file/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/16-doc-ghi-file/</guid>
       <description>Hướng dẫn cách đọc và ghi file trong Java bằng FileReader, BufferedReader, FileWriter và Files API. Bài viết giúp bạn hiểu rõ cách thao tác dữ liệu trên hệ thống tệp một cách an toàn và hiệu quả.</description>
     </item>
     <item>
       <title>DOM Manipulation trong JavaScript – Làm chủ giao diện web</title>
-      <link>https://example.org/blog/06-dom-manipulation/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/06-dom-manipulation/</link>
       <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/06-dom-manipulation/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/06-dom-manipulation/</guid>
       <description>Tìm hiểu cách thao tác với DOM trong JavaScript: chọn phần tử, thay đổi nội dung, thêm/xóa phần tử, và lắng nghe sự kiện để tạo ra trang web động.</description>
     </item>
     <item>
       <title>Từ khóa this trong JavaScript – Khi nào trỏ về đâu?</title>
-      <link>https://example.org/blog/05-this-trong-javascript/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/05-this-trong-javascript/</link>
       <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/05-this-trong-javascript/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/05-this-trong-javascript/</guid>
       <description>Hiểu sâu về cách hoạt động của từ khóa this trong JavaScript – tại sao nó thay đổi trong từng ngữ cảnh, và cách tránh lỗi khi dùng arrow function, callback hoặc class.</description>
     </item>
     <item>
       <title>Xử lý ngoại lệ (Exception Handling) trong Java – Giúp chương trình an toàn hơn</title>
-      <link>https://example.org/blog/15-exception-handling/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/15-exception-handling/</link>
       <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/15-exception-handling/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/15-exception-handling/</guid>
       <description>Tìm hiểu cách xử lý ngoại lệ (Exception Handling) trong Java để chương trình không bị dừng đột ngột. Học cách dùng try-catch-finally, throw, throws và tạo ngoại lệ tùy chỉnh.</description>
     </item>
     <item>
       <title>Collection và Stream API trong Java – Làm việc hiệu quả với dữ liệu</title>
-      <link>https://example.org/blog/14-collection-va-stream-api/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/14-collection-va-stream-api/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/14-collection-va-stream-api/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/14-collection-va-stream-api/</guid>
       <description>Tìm hiểu Collection Framework và Stream API trong Java – cách xử lý dữ liệu linh hoạt, hiện đại và tối ưu. Bài viết giúp bạn nắm vững List, Set, Map và luồng dữ liệu trong Java 8&#43;.</description>
     </item>
     <item>
       <title>Hoisting và Scope trong JavaScript – Hiểu sâu cách trình thông dịch hoạt động</title>
-      <link>https://example.org/blog/04-hoisting-va-scope/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/04-hoisting-va-scope/</link>
       <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/04-hoisting-va-scope/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/04-hoisting-va-scope/</guid>
       <description>Hoisting và Scope là nền tảng giúp bạn hiểu cách trình thông dịch JavaScript hoạt động. Bài viết này sẽ giúp bạn phân biệt var, let, const, phạm vi hàm, khối, và hiện tượng hoisting khi biên dịch mã JS.</description>
     </item>
     <item>
       <title>Đa hình và Kế thừa trong Java – Sức mạnh của lập trình hướng đối tượng</title>
-      <link>https://example.org/blog/13-da-hinh-ke-thua/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/13-da-hinh-ke-thua/</link>
       <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/13-da-hinh-ke-thua/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/13-da-hinh-ke-thua/</guid>
       <description>Hiểu rõ cơ chế kế thừa và đa hình trong Java giúp bạn viết code linh hoạt, dễ mở rộng và bảo trì. Bài viết này giải thích chi tiết hai khái niệm cốt lõi với ví dụ minh họa dễ hiểu.</description>
     </item>
     <item>
       <title>Promise và Async/Await trong JavaScript – Hiểu sâu về bất đồng bộ hiện đại</title>
-      <link>https://example.org/blog/03-promise-async-await/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/03-promise-async-await/</link>
       <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/03-promise-async-await/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/03-promise-async-await/</guid>
       <description>Promise và Async/Await là nền tảng của lập trình bất đồng bộ trong JavaScript. Bài viết này giúp bạn hiểu rõ cách hoạt động, chuỗi then(), lỗi thường gặp và cách viết code bất đồng bộ sạch, dễ đọc.</description>
     </item>
     <item>
       <title>Hiểu rõ về Closure trong JavaScript – Bí mật đằng sau sức mạnh của hàm</title>
-      <link>https://example.org/blog/02-closure-trong-javascript/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/02-closure-trong-javascript/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/02-closure-trong-javascript/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/02-closure-trong-javascript/</guid>
       <description>Closure là khái niệm cốt lõi trong JavaScript, giúp hàm có thể nhớ biến bên ngoài ngay cả khi hàm cha đã kết thúc. Bài viết này giải thích chi tiết Closure, ứng dụng, lỗi thường gặp và ví dụ thực tế.</description>
     </item>
     <item>
       <title>Lập trình hướng đối tượng (OOP) trong Java – Nền tảng của mọi ứng dụng hiện đại</title>
-      <link>https://example.org/blog/12-oop-trong-java/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/12-oop-trong-java/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/12-oop-trong-java/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/12-oop-trong-java/</guid>
       <description>Tìm hiểu sâu về lập trình hướng đối tượng (OOP) trong Java – nguyên lý, ví dụ, lợi ích và ứng dụng trong thực tế.</description>
     </item>
     <item>
       <title>Giới thiệu về Java – Ngôn ngữ lập trình mạnh mẽ và đa nền tảng</title>
-      <link>https://example.org/blog/11-gioi-thieu-java/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/11-gioi-thieu-java/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/11-gioi-thieu-java/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/11-gioi-thieu-java/</guid>
       <description>Java là một trong những ngôn ngữ lập trình phổ biến nhất thế giới. Bài viết này giúp bạn hiểu nguồn gốc, đặc điểm, ưu điểm, và cách Java hoạt động trên nhiều nền tảng.</description>
     </item>
     <item>
       <title>Hiểu sâu về Event Loop trong JavaScript – Cơ chế bất đồng bộ mượt mà</title>
-      <link>https://example.org/blog/01-event-loop/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/01-event-loop/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/01-event-loop/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/01-event-loop/</guid>
       <description>Event Loop là trái tim của JavaScript – cơ chế giúp ngôn ngữ đơn luồng vẫn xử lý được bất đồng bộ. Bài viết này tổng hợp đầy đủ 10 phần: từ khái niệm, cơ chế hoạt động, Microtask &amp;amp; Macrotask, đến ví dụ thực tế và ứng dụng nâng cao.</description>
     </item>
   </channel>

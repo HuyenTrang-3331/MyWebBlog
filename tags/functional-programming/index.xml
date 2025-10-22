@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Functional Programming on Lê Thị Huyền Trang</title>
-    <link>https://example.org/tags/functional-programming/</link>
+    <link>https://huyentrang-3331.github.io/MyWebBlog/tags/functional-programming/</link>
     <description>Recent content in Functional Programming on Lê Thị Huyền Trang</description>
     <generator>Hugo -- 0.150.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/functional-programming/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://huyentrang-3331.github.io/MyWebBlog/tags/functional-programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java Stream nâng cao – Grouping, Mapping và Collectors chuyên sâu</title>
-      <link>https://example.org/blog/20-stream-nang-cao/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/20-stream-nang-cao/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/20-stream-nang-cao/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/20-stream-nang-cao/</guid>
       <description>Học cách sử dụng Stream API nâng cao trong Java với grouping, partitioning, mapping và Collectors để xử lý dữ liệu hiệu quả và hiện đại.</description>
     </item>
   </channel>

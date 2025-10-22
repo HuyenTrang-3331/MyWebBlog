@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Macrotask on Lê Thị Huyền Trang</title>
-    <link>https://example.org/tags/macrotask/</link>
+    <link>https://huyentrang-3331.github.io/MyWebBlog/tags/macrotask/</link>
     <description>Recent content in Macrotask on Lê Thị Huyền Trang</description>
     <generator>Hugo -- 0.150.0</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 05 Sep 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/macrotask/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://huyentrang-3331.github.io/MyWebBlog/tags/macrotask/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hiểu sâu về Event Loop trong JavaScript – Cơ chế bất đồng bộ mượt mà</title>
-      <link>https://example.org/blog/01-event-loop/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/01-event-loop/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/01-event-loop/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/01-event-loop/</guid>
       <description>Event Loop là trái tim của JavaScript – cơ chế giúp ngôn ngữ đơn luồng vẫn xử lý được bất đồng bộ. Bài viết này tổng hợp đầy đủ 10 phần: từ khái niệm, cơ chế hoạt động, Microtask &amp;amp; Macrotask, đến ví dụ thực tế và ứng dụng nâng cao.</description>
     </item>
   </channel>

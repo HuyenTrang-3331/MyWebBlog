@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Concurrency on Lê Thị Huyền Trang</title>
-    <link>https://example.org/tags/concurrency/</link>
+    <link>https://huyentrang-3331.github.io/MyWebBlog/tags/concurrency/</link>
     <description>Recent content in Concurrency on Lê Thị Huyền Trang</description>
     <generator>Hugo -- 0.150.0</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 05 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/concurrency/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://huyentrang-3331.github.io/MyWebBlog/tags/concurrency/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Đa luồng (Multithreading) trong Java – Hiểu và làm chủ Concurrency</title>
-      <link>https://example.org/blog/17-da-luong-trong-java/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/17-da-luong-trong-java/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/17-da-luong-trong-java/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/17-da-luong-trong-java/</guid>
       <description>Tìm hiểu cơ chế đa luồng (Multithreading) trong Java: Thread, Runnable, synchronized, ExecutorService và cách quản lý song song hiệu quả. Bài viết giúp bạn làm chủ concurrency trong ứng dụng thực tế.</description>
     </item>
     <item>
       <title>Promise và Async/Await trong JavaScript – Hiểu sâu về bất đồng bộ hiện đại</title>
-      <link>https://example.org/blog/03-promise-async-await/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/03-promise-async-await/</link>
       <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/03-promise-async-await/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/03-promise-async-await/</guid>
       <description>Promise và Async/Await là nền tảng của lập trình bất đồng bộ trong JavaScript. Bài viết này giúp bạn hiểu rõ cách hoạt động, chuỗi then(), lỗi thường gặp và cách viết code bất đồng bộ sạch, dễ đọc.</description>
     </item>
     <item>
       <title>Hiểu sâu về Event Loop trong JavaScript – Cơ chế bất đồng bộ mượt mà</title>
-      <link>https://example.org/blog/01-event-loop/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/01-event-loop/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/01-event-loop/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/01-event-loop/</guid>
       <description>Event Loop là trái tim của JavaScript – cơ chế giúp ngôn ngữ đơn luồng vẫn xử lý được bất đồng bộ. Bài viết này tổng hợp đầy đủ 10 phần: từ khái niệm, cơ chế hoạt động, Microtask &amp;amp; Macrotask, đến ví dụ thực tế và ứng dụng nâng cao.</description>
     </item>
   </channel>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>JVM on Lê Thị Huyền Trang</title>
-    <link>https://example.org/tags/jvm/</link>
+    <link>https://huyentrang-3331.github.io/MyWebBlog/tags/jvm/</link>
     <description>Recent content in JVM on Lê Thị Huyền Trang</description>
     <generator>Hugo -- 0.150.0</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 05 Sep 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://huyentrang-3331.github.io/MyWebBlog/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Giới thiệu về Java – Ngôn ngữ lập trình mạnh mẽ và đa nền tảng</title>
-      <link>https://example.org/blog/11-gioi-thieu-java/</link>
+      <link>https://huyentrang-3331.github.io/MyWebBlog/blog/11-gioi-thieu-java/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/blog/11-gioi-thieu-java/</guid>
+      <guid>https://huyentrang-3331.github.io/MyWebBlog/blog/11-gioi-thieu-java/</guid>
       <description>Java là một trong những ngôn ngữ lập trình phổ biến nhất thế giới. Bài viết này giúp bạn hiểu nguồn gốc, đặc điểm, ưu điểm, và cách Java hoạt động trên nhiều nền tảng.</description>
     </item>
   </channel>
