@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tối ưu hiệu năng JavaScript – Viết code nhanh hơn, mượt hơn và thông minh hơn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<article class="post-container">
+  <div class="post-card">
+    <h1 class="post-title">Tối ưu hiệu năng JavaScript – Viết code nhanh hơn, mượt hơn và thông minh hơn</h1>
+    <p class="post-date">🕓 Đăng ngày 20/10/2025</p>
+
+    
+    <img src="/images/performance-optimization.jpg" alt="Tối ưu hiệu năng JavaScript – Viết code nhanh hơn, mượt hơn và thông minh hơn" class="post-image" />
+    
+
+    <div class="post-content">
+      <blockquote>
+<p>⚡ <strong>“Hiệu năng tốt là trải nghiệm tốt – và JavaScript đóng vai trò then chốt.”</strong></p></blockquote>
+<p>JavaScript là trái tim của web hiện đại, nhưng nếu không tối ưu đúng cách, code có thể khiến trang web <strong>chậm, lag hoặc tốn tài nguyên</strong>.<br>
+Bài viết này giúp bạn hiểu và áp dụng các kỹ thuật để <strong>tăng tốc ứng dụng web</strong>.</p>
+<hr>
+<h1 id="-1-giảm-thao-tác-dom">🚀 1. Giảm thao tác DOM</h1>
+<p>DOM là phần “đắt đỏ” nhất trong trình duyệt. Mỗi lần bạn chỉnh sửa nó, trình duyệt phải <strong>vẽ lại (repaint)</strong> hoặc <strong>tính lại layout (reflow)</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// ❌ Không tối ưu
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;list&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;&lt;li&gt;Item&lt;/li&gt;&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ✅ Tối ưu: tạo nội dung trước rồi cập nhật 1 lần
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">list</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;list&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">html</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">html</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">`&lt;li&gt;Item </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">i</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&lt;/li&gt;`</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">html</span>;
+</span></span></code></pre></div><p>💡 <strong>Mẹo:</strong> Sử dụng <code>DocumentFragment</code> hoặc framework như React để giảm thao tác DOM.</p>
+<hr>
+<h1 id="-2-dùng-const-và-let-thay-cho-var">🧠 2. Dùng <code>const</code> và <code>let</code> thay cho <code>var</code></h1>
+<p>Các biến <code>let</code> và <code>const</code> có phạm vi khối (block scope), giúp trình thông dịch tối ưu bộ nhớ tốt hơn và tránh xung đột.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1000</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>📘 <strong>Tip:</strong> Hạn chế biến toàn cục (<code>global variables</code>) vì chúng chiếm bộ nhớ suốt vòng đời trang.</p>
+<hr>
+<h1 id="-3-sử-dụng-debounce-và-throttle-cho-sự-kiện-liên-tục">⚙️ 3. Sử dụng <code>debounce</code> và <code>throttle</code> cho sự kiện liên tục</h1>
+<p>Sự kiện như <code>scroll</code> hoặc <code>resize</code> gọi quá nhiều lần có thể gây lag.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">debounce</span>(<span style="color:#a6e22e">fn</span>, <span style="color:#a6e22e">delay</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">timeout</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> (...<span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">clearTimeout</span>(<span style="color:#a6e22e">timeout</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">timeout</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setTimeout</span>(() =&gt; <span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#66d9ef">this</span>, <span style="color:#a6e22e">args</span>), <span style="color:#a6e22e">delay</span>);
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;resize&#34;</span>, <span style="color:#a6e22e">debounce</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Resize xong!&#34;</span>);
+</span></span><span style="display:flex;"><span>}, <span style="color:#ae81ff">500</span>));
+</span></span></code></pre></div><p>📎 <code>debounce</code>: chỉ gọi hàm sau khi ngừng thao tác một khoảng thời gian.</p>
+<hr>
+<h1 id="-4-caching-dữ-liệu-hợp-lý">🔄 4. Caching dữ liệu hợp lý</h1>
+<p>Lưu trữ dữ liệu API hoặc kết quả tính toán giúp giảm số lần gọi lại server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cache</span> <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUser</span>(<span style="color:#a6e22e">id</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">cache</span>[<span style="color:#a6e22e">id</span>]) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cache</span>[<span style="color:#a6e22e">id</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">`/api/users/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cache</span>[<span style="color:#a6e22e">id</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">data</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>💾 <strong>Lợi ích:</strong> Tăng tốc xử lý và giảm tải server.</p>
+<hr>
+<h1 id="-5-sử-dụng-vòng-lặp-hiệu-quả">🧩 5. Sử dụng vòng lặp hiệu quả</h1>
+<p>So sánh hiệu năng giữa các vòng lặp:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Vòng lặp</th>
+          <th>Tốc độ</th>
+          <th>Ghi chú</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>for</code></td>
+          <td>⚡ Nhanh nhất</td>
+          <td>Dễ kiểm soát</td>
+      </tr>
+      <tr>
+          <td><code>for...of</code></td>
+          <td>Trung bình</td>
+          <td>Dễ đọc</td>
+      </tr>
+      <tr>
+          <td><code>forEach</code></td>
+          <td>Chậm hơn</td>
+          <td>Không hỗ trợ <code>break</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>📌 <strong>Mẹo:</strong> Dùng <code>for</code> trong các tác vụ lặp nhiều phần tử (hàng ngàn dòng).</p>
+<hr>
+<h1 id="-6-lazy-loading--chỉ-tải-khi-cần">🧮 6. Lazy Loading – Chỉ tải khi cần</h1>
+<p>Khi trang web có nhiều hình ảnh hoặc script, hãy tải dần để tiết kiệm tài nguyên.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;thumbnail.jpg&#34;</span> <span style="color:#a6e22e">loading</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lazy&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Ảnh minh họa&#34;</span>&gt;
+</span></span></code></pre></div><p>Hoặc dùng kỹ thuật <strong>code splitting</strong> trong React/Vue:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Home</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">lazy</span>(() =&gt; <span style="color:#66d9ef">import</span>(<span style="color:#e6db74">&#34;./Home&#34;</span>));
+</span></span></code></pre></div><p>📦 <strong>Kết quả:</strong> Giảm thời gian tải trang ban đầu.</p>
+<hr>
+<h1 id="-7-giảm-kích-thước-file-javascript">⚡ 7. Giảm kích thước file JavaScript</h1>
+<ul>
+<li><strong>Loại bỏ code thừa</strong> (unused imports, console.log).</li>
+<li><strong>Nén file JS</strong> bằng <code>Terser</code> hoặc <code>UglifyJS</code>.</li>
+<li><strong>Dùng CDN</strong> để phân phối script nhanh hơn.</li>
+<li><strong>Sử dụng HTTP/2</strong> để tải song song hiệu quả.</li>
+</ul>
+<hr>
+<h1 id="-8-sử-dụng-web-workers-cho-tác-vụ-nặng">🧱 8. Sử dụng Web Workers cho tác vụ nặng</h1>
+<p>Khi code JavaScript chạy trên thread chính, nó có thể làm treo UI.<br>
+Giải pháp: chạy các tác vụ nặng ở thread riêng bằng <strong>Web Worker</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// worker.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#a6e22e">result</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// main.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">worker</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Worker</span>(<span style="color:#e6db74">&#34;worker.js&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Kết quả:&#34;</span>, <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">data</span>);
+</span></span></code></pre></div><p>🧩 <strong>Lợi ích:</strong> UI vẫn mượt mà dù xử lý nặng.</p>
+<hr>
+<h1 id="-9-dùng-công-cụ-đo-hiệu-năng">📊 9. Dùng công cụ đo hiệu năng</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Công cụ</th>
+          <th>Mục đích</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Chrome DevTools</strong></td>
+          <td>Theo dõi timeline, memory, repaint</td>
+      </tr>
+      <tr>
+          <td><strong>Lighthouse</strong></td>
+          <td>Đo hiệu suất tổng thể trang web</td>
+      </tr>
+      <tr>
+          <td><strong>WebPageTest</strong></td>
+          <td>Phân tích thời gian tải</td>
+      </tr>
+      <tr>
+          <td><strong>React Profiler</strong></td>
+          <td>Tối ưu component trong React</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-10-tổng-kết-kỹ-thuật-tối-ưu">🧾 10. Tổng kết kỹ thuật tối ưu</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Kỹ thuật</th>
+          <th>Lợi ích</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Giảm thao tác DOM</td>
+          <td>Giảm reflow, repaint</td>
+      </tr>
+      <tr>
+          <td>Debounce/Throttle</td>
+          <td>Giảm sự kiện liên tục</td>
+      </tr>
+      <tr>
+          <td>Caching</td>
+          <td>Tăng tốc API</td>
+      </tr>
+      <tr>
+          <td>Lazy Loading</td>
+          <td>Tải nhanh hơn</td>
+      </tr>
+      <tr>
+          <td>Web Worker</td>
+          <td>Giữ UI mượt</td>
+      </tr>
+      <tr>
+          <td>Giảm kích thước JS</td>
+          <td>Rút ngắn thời gian tải</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-kết-luận">🎯 Kết luận</h1>
+<ul>
+<li>Tối ưu hiệu năng không chỉ giúp <strong>website nhanh hơn</strong> mà còn <strong>giữ chân người dùng</strong>.</li>
+<li>Bắt đầu từ những kỹ thuật nhỏ: <strong>debounce, caching, DOM batching</strong>.</li>
+<li>Hãy đo đạc thường xuyên bằng DevTools để biết <strong>code của bạn thực sự hiệu quả đến đâu</strong>.</li>
+</ul>
+<blockquote>
+<p>⚙️ <strong>“Code tốt chưa đủ – phải chạy nhanh nữa mới gọi là giỏi.”</strong></p></blockquote>
+
+    </div>
+
+    <div class="back-link">
+      <a href="/blog/">← Quay lại danh sách bài viết</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .post-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .post-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+  }
+
+  body.dark .post-card {
+    background: #1f2937;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .post-date {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+  }
+
+  .post-content h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+  }
+
+  .post-content p {
+    margin-bottom: 1rem;
+  }
+
+  .post-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+  }
+
+  body.dark .post-content code {
+    background: #374151;
+  }
+
+  pre {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  body.dark pre {
+    background: #111827;
+  }
+
+  .back-link {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .back-link a {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .back-link a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+.post-content a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.post-content a:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+body.dark .post-content a {
+  color: #93c5fd; 
+
+body.dark .post-content a:hover {
+  color: #60a5fa; 
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+</style>
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

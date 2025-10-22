@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hoisting và Scope trong JavaScript – Hiểu sâu cách trình thông dịch hoạt động</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<article class="post-container">
+  <div class="post-card">
+    <h1 class="post-title">Hoisting và Scope trong JavaScript – Hiểu sâu cách trình thông dịch hoạt động</h1>
+    <p class="post-date">🕓 Đăng ngày 20/09/2025</p>
+
+    
+    <img src="/images/hoisting-scope.jpg" alt="Hoisting và Scope trong JavaScript – Hiểu sâu cách trình thông dịch hoạt động" class="post-image" />
+    
+
+    <div class="post-content">
+      <blockquote>
+<p>🧠 <strong>“Hiểu Hoisting và Scope – bạn đã nắm được 50% JavaScript.”</strong></p></blockquote>
+<p>Khi bạn khai báo biến hoặc hàm trong JavaScript, trình thông dịch <strong>không đọc từ trên xuống</strong> như bạn tưởng.<br>
+Thực tế, JS <strong>hoisting (kéo lên trên)</strong> các khai báo trong giai đoạn biên dịch.<br>
+Hãy cùng tìm hiểu chi tiết cơ chế này nhé!</p>
+<hr>
+<h1 id="-1-scope-là-gì">📘 1. Scope là gì?</h1>
+<p><strong>Scope (phạm vi)</strong> quyết định <strong>nơi biến có thể được truy cập</strong> trong chương trình.</p>
+<p>JavaScript có 3 loại scope chính:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Loại Scope</th>
+          <th>Phạm vi áp dụng</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Global Scope</strong></td>
+          <td>Biến khai báo ngoài hàm</td>
+          <td><code>let x = 10;</code></td>
+      </tr>
+      <tr>
+          <td><strong>Function Scope</strong></td>
+          <td>Biến khai báo trong hàm</td>
+          <td><code>function a(){ let y = 5; }</code></td>
+      </tr>
+      <tr>
+          <td><strong>Block Scope</strong></td>
+          <td>Biến khai báo trong <code>{}</code> (if, for, while, …)</td>
+          <td><code>if(true){ let z = 7; }</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-2-function-scope-vs-block-scope">⚙️ 2. Function Scope vs Block Scope</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">true</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span>); <span style="color:#75715e">// ✅ 10
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">b</span>); <span style="color:#75715e">// ❌ ReferenceError
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">test</span>();
+</span></span></code></pre></div><p>💡 <code>var</code> không tuân theo block scope → bị “lọt” ra ngoài khối.<br>
+Trong khi <code>let</code> và <code>const</code> bị giới hạn trong block <code>{}</code>.</p>
+<hr>
+<h1 id="-3-hoisting-là-gì">🔍 3. Hoisting là gì?</h1>
+<p><strong>Hoisting</strong> là cơ chế mà JS <strong>đưa phần khai báo biến và hàm lên đầu phạm vi</strong> trước khi thực thi mã.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span>); <span style="color:#75715e">// undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span></code></pre></div><p>JS hiểu ngầm như:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span></code></pre></div><p>⚠️ Chỉ <strong>khai báo</strong> được hoisting, <strong>gán giá trị thì không.</strong></p>
+<hr>
+<h1 id="-4-hoisting-với-function-declaration">🔁 4. Hoisting với Function Declaration</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">sayHello</span>(); <span style="color:#75715e">// ✅ Vẫn chạy được
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sayHello</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Xin chào!&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>🧩 Function Declaration được hoisting <strong>cả phần thân hàm</strong> → có thể gọi trước khi định nghĩa.</p></blockquote>
+<hr>
+<h1 id="-5-hoisting-với-function-expression-và-arrow-function">🔩 5. Hoisting với Function Expression và Arrow Function</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">sayHi</span>(); <span style="color:#75715e">// ❌ Error: Cannot access &#39;sayHi&#39; before initialization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sayHi</span> <span style="color:#f92672">=</span> () =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Hi!&#34;</span>);
+</span></span></code></pre></div><p>💡 Với <code>let</code> và <code>const</code>, biến nằm trong <strong>“Temporal Dead Zone (TDZ)”</strong><br>
+– vùng mà biến tồn tại nhưng chưa thể truy cập.</p>
+<hr>
+<h1 id="-6-temporal-dead-zone-tdz">🧱 6. Temporal Dead Zone (TDZ)</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// ❌ ReferenceError
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+</span></span></code></pre></div><p>Trước khi dòng <code>let x = 5</code> chạy, biến <code>x</code> đã được <strong>reserve (đặt chỗ)</strong> trong TDZ,<br>
+nhưng <strong>chưa được khởi tạo</strong> → không thể dùng được.</p>
+<hr>
+<h1 id="-7-phân-biệt-var-let-const">⚡ 7. Phân biệt var, let, const</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Thuộc tính</th>
+          <th><code>var</code></th>
+          <th><code>let</code></th>
+          <th><code>const</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Phạm vi</td>
+          <td>Function Scope</td>
+          <td>Block Scope</td>
+          <td>Block Scope</td>
+      </tr>
+      <tr>
+          <td>Hoisting</td>
+          <td>Có (gán undefined)</td>
+          <td>Có (TDZ)</td>
+          <td>Có (TDZ)</td>
+      </tr>
+      <tr>
+          <td>Khai báo lại</td>
+          <td>Cho phép</td>
+          <td>❌ Không</td>
+          <td>❌ Không</td>
+      </tr>
+      <tr>
+          <td>Gán lại</td>
+          <td>Cho phép</td>
+          <td>✅ Cho phép</td>
+          <td>❌ Không</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-8-hoisting-và-execution-context">🔎 8. Hoisting và Execution Context</h1>
+<p>Mỗi lần gọi hàm, JS tạo <strong>Execution Context</strong> gồm 2 giai đoạn:</p>
+<ol>
+<li>
+<p><strong>Creation Phase (Giai đoạn tạo lập):</strong></p>
+<ul>
+<li>Tạo <code>scope chain</code></li>
+<li>Khởi tạo biến (gán <code>undefined</code>)</li>
+<li>Hoisting function</li>
+</ul>
+</li>
+<li>
+<p><strong>Execution Phase (Thực thi):</strong></p>
+<ul>
+<li>Gán giá trị thật</li>
+<li>Chạy từng lệnh trong scope</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="-9-ví-dụ-tổng-hợp">🚀 9. Ví dụ tổng hợp</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// undefined (do hoisting)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">foo</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// 1
+</span></span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>undefined
+2
+1
+</code></pre><p>🧠 <code>var x</code> trong <code>foo()</code> được hoisting lên đầu phạm vi hàm → “che khuất” biến toàn cục.</p>
+<hr>
+<h1 id="-10-tổng-kết-kiến-thức">🧾 10. Tổng kết kiến thức</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Khái niệm</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Scope</strong></td>
+          <td>Phạm vi tồn tại của biến</td>
+          <td><code>function() { let x = 5 }</code></td>
+      </tr>
+      <tr>
+          <td><strong>Hoisting</strong></td>
+          <td>JS đưa khai báo lên đầu trước khi chạy</td>
+          <td><code>var a; console.log(a); a = 10;</code></td>
+      </tr>
+      <tr>
+          <td><strong>TDZ (Temporal Dead Zone)</strong></td>
+          <td>Biến chưa được khởi tạo không thể truy cập</td>
+          <td><code>let a;</code></td>
+      </tr>
+      <tr>
+          <td><strong>Execution Context</strong></td>
+          <td>Môi trường chứa scope và hoisting</td>
+          <td><code>call stack</code></td>
+      </tr>
+      <tr>
+          <td><strong>var / let / const</strong></td>
+          <td>Cách khai báo khác nhau về phạm vi và hoisting</td>
+          <td>So sánh ở bảng trên</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-kết-luận">🎯 Kết luận</h1>
+<ul>
+<li><code>Hoisting</code> và <code>Scope</code> là nền tảng để hiểu mọi hành vi trong JS.</li>
+<li>Hiểu rõ <strong>Execution Context</strong>, <strong>TDZ</strong>, và <strong>Scope Chain</strong> giúp bạn tránh bug khó chịu.</li>
+<li>Khi nắm được cách JS <strong>biên dịch trước khi chạy</strong>, bạn có thể viết code tối ưu và ít lỗi hơn.</li>
+</ul>
+<blockquote>
+<p>💡 <strong>“Hiểu Scope – hiểu cách JS tư duy.”</strong></p></blockquote>
+<hr>
+<h1 id="-tài-liệu-tham-khảo">📚 Tài liệu tham khảo</h1>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting">MDN – Hoisting</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Scope">MDN – Scope</a></li>
+<li><a href="https://javascript.info/closure">JavaScript.info – Variable Scope, Closure</a></li>
+<li><a href="https://github.com/getify/You-Dont-Know-JS">You Don’t Know JS – Scope &amp; Closures</a></li>
+</ul>
+
+    </div>
+
+    <div class="back-link">
+      <a href="/blog/">← Quay lại danh sách bài viết</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .post-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .post-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+  }
+
+  body.dark .post-card {
+    background: #1f2937;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .post-date {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+  }
+
+  .post-content h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+  }
+
+  .post-content p {
+    margin-bottom: 1rem;
+  }
+
+  .post-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+  }
+
+  body.dark .post-content code {
+    background: #374151;
+  }
+
+  pre {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  body.dark pre {
+    background: #111827;
+  }
+
+  .back-link {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .back-link a {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .back-link a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+.post-content a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.post-content a:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+body.dark .post-content a {
+  color: #93c5fd; 
+
+body.dark .post-content a:hover {
+  color: #60a5fa; 
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+</style>
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

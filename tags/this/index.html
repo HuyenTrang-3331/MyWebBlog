@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>This</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+
+
+<section class="blog-intro">
+  <h1>✨ <b>Blog chia sẻ kiến thức về <span class="java">Java</span> & <span class="js">JavaScript</span></b></h1>
+  <p>Cung cấp nội dung dễ hiểu, trực quan và thực tế cho sinh viên, lập trình viên trẻ và người mới học.</p>
+</section>
+
+<main id="posts" class="container">
+  
+  
+<aside class="learning-path">
+  <div class="inner">
+    <h3>📘 Lộ trình học</h3>
+
+    
+    <div class="path-section">
+      <h4>⚡ JavaScript Cơ bản → Nâng cao</h4>
+      <ul>
+        <li><a href="/blog/01-event-loop/">1️⃣ Event Loop – Cơ chế bất đồng bộ</a></li>
+        <li><a href="/blog/02-closure-trong-javascript/">2️⃣ Closure trong JavaScript</a></li>
+        <li><a href="/blog/03-promise-async-await/">3️⃣ Promise & Async/Await</a></li>
+        <li><a href="/blog/04-hoisting-va-scope/">4️⃣ Hoisting và Scope</a></li>
+        <li><a href="/blog/05-this-trong-javascript/">5️⃣ Từ khóa <code>this</code> trong JavaScript</a></li>
+        <li><a href="/blog/06-dom-manipulation/">6️⃣ Làm việc với DOM</a></li>
+        <li><a href="/blog/07-fetch-api/">7️⃣ Fetch API – Gọi dữ liệu từ server</a></li>
+        <li><a href="/blog/08-error-handling/">8️⃣ Xử lý lỗi (Error Handling)</a></li>
+        <li><a href="/blog/09-es6-features/">9️⃣ Các tính năng mới của ES6</a></li>
+        <li><a href="/blog/10-performance-optimization/">🔟 Tối ưu hiệu năng JavaScript</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="path-section">
+      <h4>☕ Java Cơ bản → Nâng cao</h4>
+      <ul>
+        <li><a href="/blog/11-gioi-thieu-java/">1️⃣ Giới thiệu về Java</a></li>
+        <li><a href="/blog/12-oop-trong-java/">2️⃣ Lập trình hướng đối tượng</a></li>
+        <li><a href="/blog/13-da-hinh-ke-thua/">3️⃣ Kế thừa & Đa hình</a></li>
+        <li><a href="/blog/14-collection-va-stream-api/">4️⃣ Collection & Stream API</a></li>
+        <li><a href="/blog/15-exception-handling/">5️⃣ Xử lý ngoại lệ (Exception Handling)</a></li>
+        <li><a href="/blog/16-doc-ghi-file/">6️⃣ Đọc & Ghi file trong Java</a></li>
+        <li><a href="/blog/17-da-luong-trong-java/">7️⃣ Đa luồng (Multithreading)</a></li>
+        <li><a href="/blog/18-lambda-va-functional-interface/">8️⃣ Lambda & Functional Interface</a></li>
+        <li><a href="/blog/19-generics-trong-java/">9️⃣ Generics trong Java</a></li>
+        <li><a href="/blog/20-stream-nang-cao/">🔟 Stream nâng cao</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+
+
+<section class="blog-grid">
+  
+  
+    <article class="post-card">
+      <a href="https://example.org/blog/05-this-trong-javascript/" style="text-decoration: none;">
+        <div class="post-thumb">
+          <img src="/images/this-trong-javascript.jpg" alt="Từ khóa this trong JavaScript – Khi nào trỏ về đâu?">
+        </div>
+        <div class="post-body">
+          <h2>Từ khóa this trong JavaScript – Khi nào trỏ về đâu?</h2>
+          <p>Hiểu sâu về cách hoạt động của từ khóa this trong JavaScript – tại sao nó thay đổi trong từng ngữ cảnh, và cách tránh lỗi khi dùng arrow function, callback hoặc class.</p>
+          <div class="post-footer">
+            <span class="date">25/09/2025</span>
+            <span class="read-more">Xem thêm →</span>
+          </div>
+        </div>
+      </a>
+    </article>
+  
+</section>
+
+
+
+
+
+  
+  <aside class="sidebar">
+  <div class="inner">
+    <div class="sidebar-section">
+      <h3>🔥 Bài nổi bật</h3>
+      <ul>
+        
+        <li><a href="https://example.org/blog/05-this-trong-javascript/">Từ khóa this trong JavaScript – Khi nào trỏ về đâu?</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+</main>
+
+
+<style>
+ 
+.blog-intro {
+  text-align: center;
+  margin: 2.5rem auto 1.5rem;
+  max-width: 900px;
+  line-height: 1.5;
+}
+.blog-intro h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.6rem;
+}
+.blog-intro h1 .java {
+  color: #2563eb;
+}
+.blog-intro h1 .js {
+  color: #1d4ed8;
+}
+.blog-intro p {
+  font-size: 1.05rem;
+  color: #475569;
+}
+
+ 
+body.dark .blog-intro h1 {
+  color: #f8fafc;
+}
+body.dark .blog-intro p {
+  color: #cbd5e1;
+}
+body.dark .blog-intro .java,
+body.dark .blog-intro .js {
+  color: #60a5fa;
+}
+
+
+ 
+.container {
+  display: grid;
+  grid-template-columns: 0.9fr 2.6fr 1fr;
+  gap: 2rem;
+  padding: 3rem 8%;
+  background: #f9fafb;
+}
+aside { position: relative; }
+aside .inner {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 1.8rem 1.6rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  transition: all 0.35s ease;
+}
+aside .inner:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.18);
+}
+
+ 
+.learning-path { margin-left: 1rem; }
+.learning-path h3 {
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+  border-left: 4px solid #1e40af;
+  padding-left: 0.75rem;
+}
+.path-section {
+  margin-bottom: 1.5rem;
+}
+.path-section h4 {
+  color: #1e3a8a;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.path-section ul {
+  list-style: none;
+  padding-left: 1.4rem;
+  margin: 0;
+}
+.path-section li {
+  margin-bottom: 0.6rem;
+}
+.path-section a {
+  color: #1e293b;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-block;
+}
+.path-section a:hover {
+  color: #1e40af;
+  transform: translateX(3px);
+  font-weight: 600;
+}
+
+ 
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+}
+.post-card {
+  background: var(--bg-card);
+  border-radius: 1.2rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.post-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+.post-thumb img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.post-card:hover .post-thumb img {
+  transform: scale(1.05);
+}
+.post-body {
+  padding: 1.6rem 1.5rem 1.8rem;
+}
+.post-body h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+.post-body p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  text-align: justify;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.date {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+.read-more {
+  color: #1d4ed8;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.read-more:hover {
+  color: #1e3a8a;
+}
+ 
+.post-card {
+  background: var(--bg-card);
+  border-radius: 1.2rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+   
+  border: 1.5px solid rgba(15, 23, 42, 0.8);  
+}
+
+.post-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+
+   
+  border-color: rgba(37, 99, 235, 0.9);
+}
+
+ 
+.sidebar h3 {
+  color: #1e3a8a;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-left: 4px solid #2563eb;
+  padding-left: 0.75rem;
+  margin-bottom: 1rem;
+}
+.sidebar-section { margin-bottom: 2rem; }
+.sidebar-section ul {
+  list-style: none;
+  padding-left: 1.2rem;
+}
+.sidebar-section li {
+  margin-bottom: 0.6rem;
+}
+.sidebar-section li a {
+  color: #1e293b;
+  text-decoration: none;
+  transition: 0.25s;
+}
+.sidebar-section li a:hover {
+  color: #1d4ed8;
+  transform: translateX(3px);
+}
+.sidebar .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-left: 1.2rem;
+}
+ 
+.sidebar-section ul {
+  list-style: none;
+  padding-left: 1.2rem;
+  margin: 0;
+  line-height: 1.5;  
+}
+
+.sidebar-section li {
+  margin-bottom: 0.6rem;
+}
+
+.sidebar .tags a {
+  background: #e0f2fe;
+  color: #1e3a8a;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+.sidebar .tags a:hover {
+  background: #1e3a8a;
+  color: #fff;
+}
+
+ 
+body.dark {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --bg-sub: #111827;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border-color: #334155;
+  --shadow-dark: rgba(0, 0, 0, 0.4);
+}
+body:not(.dark) {
+  --bg-main: #f9fafb;
+  --bg-card: #ffffff;
+  --bg-sub: #f1f5f9;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --border-color: #e5e7eb;
+  --shadow-dark: rgba(0, 0, 0, 0.08);
+}
+.container { background: var(--bg-main); }
+.inner {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  box-shadow: 0 8px 20px var(--shadow-dark);
+}
+.post-card {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: 0 6px 18px var(--shadow-dark);
+}
+.post-body h2,
+.learning-path h3,
+.sidebar h3 { color: var(--text-primary); }
+.post-body p,
+.date,
+.path-section a,
+.sidebar-section li a { color: var(--text-secondary); }
+.tags a {
+  background: var(--bg-sub);
+  color: var(--text-primary);
+}
+.tags a:hover {
+  background: #3b82f6;
+  color: #fff;
+}
+
+
+ 
+@media (max-width: 1100px) {
+  .container { grid-template-columns: 1fr 2fr; }
+  .sidebar { display: none; }
+}
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    padding: 2rem 6%;
+  }
+  .learning-path {
+    margin-left: 0;
+    margin-bottom: 2rem;
+  }
+}
+ 
+body.dark .learning-path .inner,
+body.dark .sidebar .inner {
+  background: #1e293b;
+  color: #f8fafc;  
+}
+
+body.dark .learning-path h3,
+body.dark .sidebar h3 {
+  color: #f1f5f9;
+  font-weight: 700;
+}
+
+body.dark .path-section h4,
+body.dark .sidebar-section h4 {
+  color: #f8fafc;
+}
+
+body.dark .path-section a,
+body.dark .sidebar-section li a {
+  color: #f1f5f9;  
+  font-weight: 500;
+}
+
+body.dark .path-section a:hover,
+body.dark .sidebar-section li a:hover {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+body.dark .sidebar .tags a {
+  background: #334155;
+  color: #f8fafc;
+}
+
+body.dark .sidebar .tags a:hover {
+  background: #3b82f6;
+  color: #fff;
+}
+
+body.dark .path-section a,
+body.dark .sidebar-section li a {
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+body.dark .path-section a:hover,
+body.dark .sidebar-section li a:hover {
+  color: #60a5fa;
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.7);
+}
+
+body.dark .path-section h4:hover {
+  color: #93c5fd;
+  text-shadow: 0 0 10px rgba(147, 197, 253, 0.6);
+}
+
+body.dark .learning-path .inner:hover,
+body.dark .sidebar .inner:hover {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.25);
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+ 
+.pagination {
+  margin: 3rem auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  border: 1.5px solid #2563eb22;
+  color: #1e3a8a;
+  background: #fff;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+}
+
+.pagination a:hover {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.pagination .active {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  color: #fff !important;
+  border-color: transparent;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.pagination .page-btn {
+  background: #e0f2fe;
+  color: #1e3a8a;
+  border-color: #93c5fd;
+}
+.pagination .page-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+ 
+body.dark .pagination a {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-color: #334155;
+  box-shadow: 0 2px 6px rgba(255,255,255,0.05);
+}
+body.dark .pagination a:hover {
+  background: #3b82f6;
+  color: #fff;
+}
+body.dark .pagination .active {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  border-color: transparent;
+}
+
+</style>
+
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

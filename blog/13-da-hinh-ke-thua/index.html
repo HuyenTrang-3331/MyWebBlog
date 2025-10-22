@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đa hình và Kế thừa trong Java – Sức mạnh của lập trình hướng đối tượng</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<article class="post-container">
+  <div class="post-card">
+    <h1 class="post-title">Đa hình và Kế thừa trong Java – Sức mạnh của lập trình hướng đối tượng</h1>
+    <p class="post-date">🕓 Đăng ngày 15/09/2025</p>
+
+    
+    <img src="/images/da-hinh-trong-java.jpg" alt="Đa hình và Kế thừa trong Java – Sức mạnh của lập trình hướng đối tượng" class="post-image" />
+    
+
+    <div class="post-content">
+      <blockquote>
+<p>☕ <strong>“Kế thừa giúp tái sử dụng mã, Đa hình giúp linh hoạt hóa chương trình.”</strong></p></blockquote>
+<p>Trong Java, hai khái niệm <strong>Inheritance (Kế thừa)</strong> và <strong>Polymorphism (Đa hình)</strong> là nền tảng của lập trình hướng đối tượng (OOP).<br>
+Chúng giúp giảm trùng lặp, tái sử dụng mã nguồn và mở rộng hệ thống dễ dàng.</p>
+<hr>
+<h1 id="-1-kế-thừa-inheritance-là-gì">🧩 1. Kế thừa (Inheritance) là gì?</h1>
+<p><strong>Kế thừa</strong> cho phép một lớp <strong>con (subclass)</strong> sử dụng lại thuộc tính và phương thức của <strong>lớp cha (superclass)</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">eat</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Đang ăn...&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">extends</span> Animal {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bark</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Gâu gâu!&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>💡 Lớp <code>Dog</code> kế thừa <code>Animal</code>, nên có thể gọi cả <code>eat()</code> và <code>bark()</code>.</p>
+<hr>
+<h1 id="-2-ưu-điểm-của-kế-thừa">⚙️ 2. Ưu điểm của Kế thừa</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Ưu điểm</th>
+          <th>Mô tả</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Tái sử dụng mã (Code Reusability)</strong></td>
+          <td>Không cần viết lại code của lớp cha</td>
+      </tr>
+      <tr>
+          <td><strong>Dễ bảo trì (Maintenance)</strong></td>
+          <td>Chỉnh sửa logic trong lớp cha sẽ ảnh hưởng đến lớp con</td>
+      </tr>
+      <tr>
+          <td><strong>Phát triển mở rộng (Extensibility)</strong></td>
+          <td>Dễ thêm hành vi mới vào lớp con</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-3-phân-loại-kế-thừa-trong-java">🧱 3. Phân loại Kế thừa trong Java</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Loại kế thừa</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Single Inheritance</strong></td>
+          <td>Một lớp kế thừa từ một lớp cha</td>
+          <td><code>class Dog extends Animal</code></td>
+      </tr>
+      <tr>
+          <td><strong>Multilevel Inheritance</strong></td>
+          <td>Kế thừa theo tầng lớp</td>
+          <td><code>class Puppy extends Dog</code></td>
+      </tr>
+      <tr>
+          <td><strong>Hierarchical Inheritance</strong></td>
+          <td>Nhiều lớp kế thừa cùng một lớp cha</td>
+          <td><code>class Cat extends Animal</code></td>
+      </tr>
+      <tr>
+          <td><strong>Multiple Inheritance (qua Interface)</strong></td>
+          <td>Java không hỗ trợ trực tiếp, chỉ qua <code>interface</code></td>
+          <td><code>class Bird implements Flyable, Singable</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-4-đa-hình-polymorphism-là-gì">🧠 4. Đa hình (Polymorphism) là gì?</h1>
+<p><strong>Polymorphism</strong> cho phép <strong>một hành vi có thể thực hiện theo nhiều cách khác nhau.</strong></p>
+<p>Ví dụ: cùng là phương thức <code>sound()</code>, nhưng mỗi lớp triển khai khác nhau.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sound</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Động vật kêu&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">extends</span> Animal {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sound</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Gâu gâu&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> <span style="color:#66d9ef">extends</span> Animal {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sound</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Meo meo&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Animal a1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Dog();
+</span></span><span style="display:flex;"><span>        Animal a2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Cat();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        a1.<span style="color:#a6e22e">sound</span>();
+</span></span><span style="display:flex;"><span>        a2.<span style="color:#a6e22e">sound</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>Gâu gâu
+Meo meo
+</code></pre><hr>
+<h1 id="-5-hai-loại-đa-hình-trong-java">🧬 5. Hai loại Đa hình trong Java</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Loại</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Compile-time Polymorphism</strong></td>
+          <td>Xảy ra khi biên dịch – dùng method overloading</td>
+          <td><code>add(int a, int b)</code> và <code>add(double a, double b)</code></td>
+      </tr>
+      <tr>
+          <td><strong>Runtime Polymorphism</strong></td>
+          <td>Xảy ra khi chạy – dùng method overriding</td>
+          <td><code>sound()</code> được ghi đè ở lớp con</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-6-method-overriding-ghi-đè-phương-thức">⚡ 6. Method Overriding (Ghi đè phương thức)</h1>
+<p>Khi lớp con <strong>ghi đè</strong> (override) một phương thức của lớp cha để thay đổi hành vi.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sound</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Động vật kêu&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">extends</span> Animal {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sound</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Gâu gâu&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>💡 Dùng annotation <code>@Override</code> giúp trình biên dịch kiểm tra chính xác việc ghi đè.</p></blockquote>
+<hr>
+<h1 id="-7-method-overloading-nạp-chồng-phương-thức">🔁 7. Method Overloading (Nạp chồng phương thức)</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Calculator</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">double</span> a, <span style="color:#66d9ef">double</span> b) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Calculator c <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Calculator();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(c.<span style="color:#a6e22e">add</span>(5, 10));
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(c.<span style="color:#a6e22e">add</span>(3.<span style="color:#a6e22e">2</span>, 4.<span style="color:#a6e22e">8</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>15
+8.0
+</code></pre><blockquote>
+<p>💡 <code>Overloading</code> giúp cùng tên phương thức, nhưng khác kiểu dữ liệu / tham số.</p></blockquote>
+<hr>
+<h1 id="-8-dùng-super-trong-kế-thừa">🧩 8. Dùng <code>super</code> trong kế thừa</h1>
+<p>Từ khóa <code>super</code> được dùng để:</p>
+<ol>
+<li>Gọi <strong>constructor</strong> của lớp cha.</li>
+<li>Gọi <strong>phương thức</strong> của lớp cha đã bị ghi đè.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>    Animal() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Động vật được tạo&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sound</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Động vật kêu&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">extends</span> Animal {
+</span></span><span style="display:flex;"><span>    Dog() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(); <span style="color:#75715e">// Gọi constructor cha</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Chó được tạo&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sound</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>.<span style="color:#a6e22e">sound</span>(); <span style="color:#75715e">// Gọi sound() của Animal</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Gâu gâu!&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>Động vật được tạo
+Chó được tạo
+Động vật kêu
+Gâu gâu!
+</code></pre><hr>
+<h1 id="-9-so-sánh-overloading-vs-overriding">🧮 9. So sánh Overloading vs Overriding</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Đặc điểm</th>
+          <th>Overloading</th>
+          <th>Overriding</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Thời điểm xảy ra</strong></td>
+          <td>Compile-time</td>
+          <td>Runtime</td>
+      </tr>
+      <tr>
+          <td><strong>Tham số</strong></td>
+          <td>Khác nhau</td>
+          <td>Giống nhau</td>
+      </tr>
+      <tr>
+          <td><strong>Lớp</strong></td>
+          <td>Cùng lớp</td>
+          <td>Lớp cha &amp; lớp con</td>
+      </tr>
+      <tr>
+          <td><strong>Annotation</strong></td>
+          <td>Không cần</td>
+          <td>Có thể dùng <code>@Override</code></td>
+      </tr>
+      <tr>
+          <td><strong>Tác dụng</strong></td>
+          <td>Tăng tính linh hoạt</td>
+          <td>Thay đổi hành vi kế thừa</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-10-tổng-kết-kiến-thức">🧾 10. Tổng kết kiến thức</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Khái niệm</th>
+          <th>Ý nghĩa</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Inheritance</strong></td>
+          <td>Kế thừa thuộc tính, hành vi từ lớp cha</td>
+          <td><code>class Dog extends Animal</code></td>
+      </tr>
+      <tr>
+          <td><strong>Polymorphism</strong></td>
+          <td>Đa hình – hành vi khác nhau cùng tên</td>
+          <td><code>a.sound()</code></td>
+      </tr>
+      <tr>
+          <td><strong>Overloading</strong></td>
+          <td>Nhiều phương thức cùng tên, khác tham số</td>
+          <td><code>add()</code></td>
+      </tr>
+      <tr>
+          <td><strong>Overriding</strong></td>
+          <td>Ghi đè hành vi từ lớp cha</td>
+          <td><code>@Override sound()</code></td>
+      </tr>
+      <tr>
+          <td><strong>super</strong></td>
+          <td>Truy cập thành phần lớp cha</td>
+          <td><code>super.sound()</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-kết-luận">🎯 Kết luận</h1>
+<ul>
+<li><strong>Kế thừa</strong> giúp tái sử dụng mã và tổ chức hệ thống rõ ràng.</li>
+<li><strong>Đa hình</strong> giúp chương trình linh hoạt, dễ mở rộng.</li>
+<li>Hiểu sâu hai khái niệm này là nền tảng để nắm vững <strong>Spring OOP</strong>, <strong>Java Design Patterns</strong>, và <strong>SOLID principles</strong>.</li>
+</ul>
+<blockquote>
+<p>☕ <strong>“Inheritance giúp bạn viết ít hơn – Polymorphism giúp bạn làm được nhiều hơn.”</strong></p></blockquote>
+<hr>
+<h1 id="-tài-liệu-tham-khảo">📚 Tài liệu tham khảo</h1>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html">Oracle – Inheritance and Polymorphism</a></li>
+<li><a href="https://www.w3schools.com/java/java_inheritance.asp">W3Schools – Java Inheritance</a></li>
+<li><a href="https://www.geeksforgeeks.org/polymorphism-in-java/">GeeksForGeeks – Polymorphism in Java</a></li>
+<li><a href="https://www.javatpoint.com/method-overriding-in-java">JavaPoint – Method Overriding and Overloading</a></li>
+</ul>
+
+    </div>
+
+    <div class="back-link">
+      <a href="/blog/">← Quay lại danh sách bài viết</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .post-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .post-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+  }
+
+  body.dark .post-card {
+    background: #1f2937;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .post-date {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+  }
+
+  .post-content h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+  }
+
+  .post-content p {
+    margin-bottom: 1rem;
+  }
+
+  .post-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+  }
+
+  body.dark .post-content code {
+    background: #374151;
+  }
+
+  pre {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  body.dark pre {
+    background: #111827;
+  }
+
+  .back-link {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .back-link a {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .back-link a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+.post-content a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.post-content a:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+body.dark .post-content a {
+  color: #93c5fd; 
+
+body.dark .post-content a:hover {
+  color: #60a5fa; 
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+</style>
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Syntax on Lê Thị Huyền Trang</title>
+    <link>https://example.org/tags/syntax/</link>
+    <description>Recent content in Syntax on Lê Thị Huyền Trang</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/syntax/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Những tính năng nổi bật của ES6 – Viết JavaScript hiện đại và gọn gàng hơn</title>
+      <link>https://example.org/blog/09-es6-features/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/09-es6-features/</guid>
+      <description>Khám phá các tính năng mới của ES6 như let/const, arrow function, template literals, destructuring, spread/rest, class, module... giúp code JavaScript hiện đại và dễ hiểu hơn.</description>
+    </item>
+  </channel>
+</rss>

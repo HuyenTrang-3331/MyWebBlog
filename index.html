@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta name="generator" content="Hugo 0.150.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lê Thị Huyền Trang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="active">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+
+
+<section class="hero-section">
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="fade-up">🚀 Khám phá thế giới <span class="highlight-java">Java</span> & <span class="highlight-js">JavaScript</span></h1>
+
+    <p class="fade-up delay-1">
+      Xin chào 👋! Mình là <strong>Lê Thị Huyền Trang</strong> — một lập trình viên trẻ với niềm đam mê đặc biệt dành cho
+      <strong>Java</strong>, <strong>JavaScript</strong> và công nghệ web hiện đại.  
+      Mình bắt đầu hành trình học lập trình từ những dòng code đầu tiên viết bằng Java, và từ đó, mình nhận ra rằng lập trình không chỉ là công cụ,
+      mà là <em>ngôn ngữ để tạo ra những điều tuyệt vời</em>.
+    </p>
+
+    <p class="fade-up delay-2">
+      Với Java, mình học được cách xây dựng ứng dụng ổn định, có cấu trúc rõ ràng;  
+      còn với JavaScript, mình tìm thấy sự linh hoạt và sáng tạo trong việc tạo ra trải nghiệm người dùng sống động.  
+      Mục tiêu của mình là trở thành một Software Developer chuyên nghiệp, có khả năng kết hợp tư duy logic với khả năng thiết kế để xây dựng
+      những sản phẩm <strong>hiệu quả, thân thiện và mang giá trị thực tiễn</strong>.
+    </p>
+
+    <p class="fade-up delay-3">
+      Blog này ra đời để chia sẻ những gì mình học được — từ kiến thức cơ bản đến các khái niệm nâng cao,  
+      giúp các bạn sinh viên và người mới học có thể tiếp cận công nghệ một cách dễ hiểu và gần gũi hơn 🌱.
+    </p>
+
+    <a href="/blog/" class="cta-btn fade-up delay-3">📚 Khám phá các bài viết</a>
+  </div>
+
+  
+  <div class="hero-image fade-up delay-3">
+    <img src="/images/banner.jpg" alt="Java & JavaScript Banner">
+  </div>
+
+  
+  <div class="light-glow light1"></div>
+  <div class="light-glow light2"></div>
+</section>
+
+
+<footer class="site-footer fade-up delay-3">
+  <div class="footer-wrapper">
+    
+    <div class="footer-about">
+      <img src="/images/avatar.jpg" alt="Lê Thị Huyền Trang" class="footer-avatar">
+      <div class="about-info">
+        <h2>Lê Thị Huyền Trang</h2>
+        <p>
+          Software Developer đam mê <strong>Java</strong> & <strong>JavaScript</strong>.  
+          Mình tin rằng lập trình là cách tuyệt vời để biến ý tưởng thành hiện thực 🌍.  
+          Sứ mệnh của mình là giúp sinh viên và người mới học tiếp cận công nghệ dễ hiểu hơn,  
+          và xây dựng những ứng dụng mang lại giá trị thật sự 💡.
+        </p>
+        <ul class="contact-list">
+          <li>📍 TP. HCM, Việt Nam</li>
+          <li>📧 <a href="mailto:htrang11022004@gmail.com">htrang11022004@gmail.com</a></li>
+          <li>🐙 <a href="https://github.com/HuyenTrang-3331" target="_blank">github.com/HuyenTrang-3331</a></li>
+          <li>💬 <a href="https://facebook.com/huyentrang" target="_blank">facebook.com/huyentrang</a></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://facebook.com/huyentrang" target="_blank" title="Facebook">💬</a>
+          <a href="https://github.com/HuyenTrang-3331" target="_blank" title="GitHub">🐙</a>
+          <a href="mailto:htrang11022004@gmail.com" title="Email">✉️</a>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="footer-links">
+      <div class="footer-col">
+        <h3>Trang</h3>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/profile/">Giới thiệu</a></li>
+          <li><a href="/contact/">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Chủ đề</h3>
+        <ul>
+          <li><a href="/tags/java/">Java</a></li>
+          <li><a href="/tags/javascript/">JavaScript</a></li>
+          <li><a href="/tags/webdev/">Web Development</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Tài nguyên</h3>
+        <ul>
+          <li><a href="https://github.com/HuyenTrang-3331" target="_blank">GitHub</a></li>
+          <li><a href="mailto:htrang11022004@gmail.com">Email</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<style>
+ 
+.hero-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5rem 10%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+  color: #0f172a;
+  flex-wrap: wrap;
+}
+body.dark .hero-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
+}
+
+ 
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.hero-image img {
+  width: 95%;
+  max-width: 1280px;
+  border-radius: 24px;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.25);
+  animation: float 5s ease-in-out infinite;
+  transition: transform 0.5s ease;
+}
+.hero-image img:hover { transform: scale(1.05); }
+@keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+
+ 
+.hero-content { flex: 1; max-width: 650px; position: relative; z-index: 2; text-align: left; }
+.hero-content h1 { font-size: 3rem; font-weight: 800; line-height: 1.3; margin-bottom: 1.2rem; }
+.hero-content p { font-size: 1.2rem; line-height: 1.8; margin-bottom: 1.5rem; color: #475569; text-align: justify; }
+body.dark .hero-content p { color: #cbd5e1; }
+
+ 
+.highlight-java { color: #dc2626; text-shadow: 0 0 12px rgba(220, 38, 38, 0.5); }
+.highlight-js { color: #f59e0b; text-shadow: 0 0 12px rgba(245, 158, 11, 0.5); }
+body.dark .highlight-java { color: #f87171; }
+body.dark .highlight-js { color: #facc15; }
+
+ 
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  color: #fff;
+  padding: 1rem 2.5rem;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+  transition: all 0.3s ease;
+}
+.cta-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, #1d4ed8, #1e40af);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+}
+
+ 
+.light-glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.6; animation: moveGlow 8s ease-in-out infinite alternate; }
+.light1 { width: 300px; height: 300px; background: rgba(37,99,235,0.25); top: -80px; left: -80px; }
+.light2 { width: 280px; height: 280px; background: rgba(245,158,11,0.25); bottom: -100px; right: -60px; }
+@keyframes moveGlow { from {transform:translate(0,0);} to {transform:translate(40px,-30px);} }
+body.dark .light1 { background: rgba(59,130,246,0.25); }
+body.dark .light2 { background: rgba(234,179,8,0.25); }
+
+ 
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.2s; } .delay-2 { transition-delay: 0.4s; } .delay-3 { transition-delay: 0.6s; }
+
+ 
+.site-footer {
+  background: #f9fafb;
+  color: #1e293b;
+  padding: 4rem 10% 2rem;
+  border-top: 1px solid #e2e8f0;
+  text-align: left;
+}
+body.dark .site-footer {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-color: #1e293b;
+}
+.footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+.footer-about {
+  flex: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.8rem;
+}
+
+ 
+.site-footer {
+  background: #f9fafb;
+  color: #1e293b;
+  padding: 4rem 10% 2rem;
+  border-top: 1px solid #e2e8f0;
+  text-align: left;
+}
+body.dark .site-footer {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-color: #1e293b;
+}
+
+.footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+ 
+.footer-avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+.footer-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 35px rgba(37, 99, 235, 0.25);
+}
+body.dark .footer-avatar {
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.08);
+}
+
+ 
+.about-info h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin-bottom: 0.8rem;
+}
+body.dark .about-info h2 { color: #93c5fd; }
+
+.about-info p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #475569;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+body.dark .about-info p { color: #cbd5e1; }
+
+ 
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.8rem 0;
+}
+.contact-list li {
+  margin-bottom: 0.4rem;
+  font-size: 0.98rem;
+}
+.contact-list a {
+  color: #1e40af;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+.contact-list a:hover {
+  color: #2563eb;
+  transform: translateY(-1px);
+}
+body.dark .contact-list a {
+  color: #cbd5e1;
+}
+body.dark .contact-list a:hover {
+  color: #60a5fa;
+}
+
+ 
+.footer-links {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+}
+.footer-col h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1e3a8a;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-col li {
+  margin-bottom: 0.6rem;
+}
+.footer-col a {
+  color: #334155;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+.footer-col a:hover {
+  color: #2563eb;
+  transform: translateX(3px);
+}
+body.dark .footer-col a {
+  color: #cbd5e1;
+}
+body.dark .footer-col a:hover {
+  color: #60a5fa;
+}
+
+ 
+.footer-social a {
+  font-size: 1.4rem;
+  margin-right: 0.7rem;
+  color: #1e3a8a;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+.footer-social a:hover {
+  color: #2563eb;
+  transform: translateY(-3px);
+}
+body.dark .footer-social a {
+  color: #60a5fa;
+}
+body.dark .footer-social a:hover {
+  color: #93c5fd;
+}
+
+ 
+.footer-bottom {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.2rem;
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+body.dark .footer-bottom {
+  border-color: #1e293b;
+  color: #94a3b8;
+}
+
+ 
+.footer-bottom p:first-child {
+  font-weight: 600;
+  background: linear-gradient(90deg, #3b82f6, #6366f1, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 8s linear infinite;
+  background-size: 250%;
+  opacity: 0.85;
+}
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+ 
+@media (max-width: 960px) {
+  .footer-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .footer-about {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-avatar {
+    width: 120px;
+    height: 120px;
+  }
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom p {
+    text-align: center;
+  }
+}
+</style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.querySelectorAll(".fade-up");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  elements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

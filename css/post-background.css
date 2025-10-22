@@ -1,0 +1,22 @@
+/* Nền cho toàn bộ phần nội dung bài viết */
+.post-single {
+  background: url("/images/bg-eventloop.jpg") no-repeat center center fixed;
+  background-size: cover;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+/* Thêm hiệu ứng overlay mờ để chữ dễ đọc */
+.post-single::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85); /* Nền trắng mờ */
+  z-index: 0;
+}
+
+/* Giữ cho nội dung nằm trên lớp overlay */
+.post-single > * {
+  position: relative;
+  z-index: 1;
+}

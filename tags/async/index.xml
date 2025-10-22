@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Async on Lê Thị Huyền Trang</title>
+    <link>https://example.org/tags/async/</link>
+    <description>Recent content in Async on Lê Thị Huyền Trang</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/async/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fetch API trong JavaScript – Cách gọi API hiện đại và dễ hiểu nhất</title>
+      <link>https://example.org/blog/07-fetch-api/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/07-fetch-api/</guid>
+      <description>Học cách sử dụng Fetch API trong JavaScript để gọi dữ liệu từ server, xử lý JSON, và làm việc với async/await một cách dễ hiểu và thực tế.</description>
+    </item>
+    <item>
+      <title>Promise và Async/Await trong JavaScript – Hiểu sâu về bất đồng bộ hiện đại</title>
+      <link>https://example.org/blog/03-promise-async-await/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/03-promise-async-await/</guid>
+      <description>Promise và Async/Await là nền tảng của lập trình bất đồng bộ trong JavaScript. Bài viết này giúp bạn hiểu rõ cách hoạt động, chuỗi then(), lỗi thường gặp và cách viết code bất đồng bộ sạch, dễ đọc.</description>
+    </item>
+    <item>
+      <title>Hiểu rõ về Closure trong JavaScript – Bí mật đằng sau sức mạnh của hàm</title>
+      <link>https://example.org/blog/02-closure-trong-javascript/</link>
+      <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/02-closure-trong-javascript/</guid>
+      <description>Closure là khái niệm cốt lõi trong JavaScript, giúp hàm có thể nhớ biến bên ngoài ngay cả khi hàm cha đã kết thúc. Bài viết này giải thích chi tiết Closure, ứng dụng, lỗi thường gặp và ví dụ thực tế.</description>
+    </item>
+    <item>
+      <title>Hiểu sâu về Event Loop trong JavaScript – Cơ chế bất đồng bộ mượt mà</title>
+      <link>https://example.org/blog/01-event-loop/</link>
+      <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/01-event-loop/</guid>
+      <description>Event Loop là trái tim của JavaScript – cơ chế giúp ngôn ngữ đơn luồng vẫn xử lý được bất đồng bộ. Bài viết này tổng hợp đầy đủ 10 phần: từ khái niệm, cơ chế hoạt động, Microtask &amp;amp; Macrotask, đến ví dụ thực tế và ứng dụng nâng cao.</description>
+    </item>
+  </channel>
+</rss>

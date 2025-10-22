@@ -1,0 +1,66 @@
+/* =======================================
+   Tăng độ rõ chữ khi ở chế độ Dark Mode
+   ======================================= */
+
+/* Tiêu đề bài viết trong thẻ card */
+.dark .post-entry h2,
+.dark .entry-header h2,
+.dark .post-entry-title {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Đoạn mô tả / tóm tắt bài viết */
+.dark .post-entry p,
+.dark .entry-content,
+.dark .post-entry .entry-content p {
+  color: #dddddd !important;
+  opacity: 1 !important;
+}
+
+/* Ngày tháng và link "Xem thêm" */
+.dark .post-meta,
+.dark .post-entry a.more {
+  color: #b0b0b0 !important;
+  opacity: 1 !important;
+}
+
+/* =======================================
+   Hiển thị 3 bài trên 1 hàng (grid layout)
+   ======================================= */
+.list .post-entry {
+  width: 100%;
+}
+
+/* Container danh sách bài viết */
+.list .post-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  gap: 1.5rem !important;
+}
+
+/* Tăng nhẹ khoảng cách giữa các bài */
+.post-entry {
+  border-radius: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hiệu ứng hover nhẹ */
+.post-entry:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive: dưới 800px chuyển về 2 cột */
+@media (max-width: 800px) {
+  .list .post-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Dưới 600px: chỉ 1 bài (mobile) */
+@media (max-width: 600px) {
+  .list .post-list {
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>List on Lê Thị Huyền Trang</title>
+    <link>https://example.org/tags/list/</link>
+    <description>Recent content in List on Lê Thị Huyền Trang</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/list/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Collection và Stream API trong Java – Làm việc hiệu quả với dữ liệu</title>
+      <link>https://example.org/blog/14-collection-va-stream-api/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/14-collection-va-stream-api/</guid>
+      <description>Tìm hiểu Collection Framework và Stream API trong Java – cách xử lý dữ liệu linh hoạt, hiện đại và tối ưu. Bài viết giúp bạn nắm vững List, Set, Map và luồng dữ liệu trong Java 8&#43;.</description>
+    </item>
+  </channel>
+</rss>

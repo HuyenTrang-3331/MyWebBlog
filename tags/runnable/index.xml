@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Runnable on Lê Thị Huyền Trang</title>
+    <link>https://example.org/tags/runnable/</link>
+    <description>Recent content in Runnable on Lê Thị Huyền Trang</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/runnable/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Đa luồng (Multithreading) trong Java – Hiểu và làm chủ Concurrency</title>
+      <link>https://example.org/blog/17-da-luong-trong-java/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/17-da-luong-trong-java/</guid>
+      <description>Tìm hiểu cơ chế đa luồng (Multithreading) trong Java: Thread, Runnable, synchronized, ExecutorService và cách quản lý song song hiệu quả. Bài viết giúp bạn làm chủ concurrency trong ứng dụng thực tế.</description>
+    </item>
+  </channel>
+</rss>

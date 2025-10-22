@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Polymorphism on Lê Thị Huyền Trang</title>
+    <link>https://example.org/tags/polymorphism/</link>
+    <description>Recent content in Polymorphism on Lê Thị Huyền Trang</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/polymorphism/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Đa hình và Kế thừa trong Java – Sức mạnh của lập trình hướng đối tượng</title>
+      <link>https://example.org/blog/13-da-hinh-ke-thua/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/13-da-hinh-ke-thua/</guid>
+      <description>Hiểu rõ cơ chế kế thừa và đa hình trong Java giúp bạn viết code linh hoạt, dễ mở rộng và bảo trì. Bài viết này giải thích chi tiết hai khái niệm cốt lõi với ví dụ minh họa dễ hiểu.</description>
+    </item>
+    <item>
+      <title>Lập trình hướng đối tượng (OOP) trong Java – Nền tảng của mọi ứng dụng hiện đại</title>
+      <link>https://example.org/blog/12-oop-trong-java/</link>
+      <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/12-oop-trong-java/</guid>
+      <description>Tìm hiểu sâu về lập trình hướng đối tượng (OOP) trong Java – nguyên lý, ví dụ, lợi ích và ứng dụng trong thực tế.</description>
+    </item>
+  </channel>
+</rss>

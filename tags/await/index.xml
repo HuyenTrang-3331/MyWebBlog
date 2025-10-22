@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Await on Lê Thị Huyền Trang</title>
+    <link>https://example.org/tags/await/</link>
+    <description>Recent content in Await on Lê Thị Huyền Trang</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/await/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Promise và Async/Await trong JavaScript – Hiểu sâu về bất đồng bộ hiện đại</title>
+      <link>https://example.org/blog/03-promise-async-await/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/03-promise-async-await/</guid>
+      <description>Promise và Async/Await là nền tảng của lập trình bất đồng bộ trong JavaScript. Bài viết này giúp bạn hiểu rõ cách hoạt động, chuỗi then(), lỗi thường gặp và cách viết code bất đồng bộ sạch, dễ đọc.</description>
+    </item>
+  </channel>
+</rss>

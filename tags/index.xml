@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Lê Thị Huyền Trang</title>
+    <link>https://example.org/tags/</link>
+    <description>Recent content in Tags on Lê Thị Huyền Trang</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Collectors</title>
+      <link>https://example.org/tags/collectors/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/collectors/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Functional Programming</title>
+      <link>https://example.org/tags/functional-programming/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/functional-programming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hiệu Năng</title>
+      <link>https://example.org/tags/hi%E1%BB%87u-n%C4%83ng/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/hi%E1%BB%87u-n%C4%83ng/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>https://example.org/tags/java/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java 8</title>
+      <link>https://example.org/tags/java-8/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/java-8/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JavaScript</title>
+      <link>https://example.org/tags/javascript/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/javascript/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Optimization</title>
+      <link>https://example.org/tags/optimization/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/optimization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Stream</title>
+      <link>https://example.org/tags/stream/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/stream/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tối Ưu</title>
+      <link>https://example.org/tags/t%E1%BB%91i-%C6%B0u/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/t%E1%BB%91i-%C6%B0u/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Web Performance</title>
+      <link>https://example.org/tags/web-performance/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/web-performance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ECMAScript</title>
+      <link>https://example.org/tags/ecmascript/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/ecmascript/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ES6</title>
+      <link>https://example.org/tags/es6/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/es6/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Generics</title>
+      <link>https://example.org/tags/generics/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/generics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Modern JS</title>
+      <link>https://example.org/tags/modern-js/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/modern-js/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Parameterized Types</title>
+      <link>https://example.org/tags/parameterized-types/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/parameterized-types/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Syntax</title>
+      <link>https://example.org/tags/syntax/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/syntax/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Type Safety</title>
+      <link>https://example.org/tags/type-safety/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/type-safety/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Debug</title>
+      <link>https://example.org/tags/debug/</link>
+      <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/debug/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Error Handling</title>
+      <link>https://example.org/tags/error-handling/</link>
+      <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/error-handling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Functional Interface</title>
+      <link>https://example.org/tags/functional-interface/</link>
+      <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/functional-interface/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lambda</title>
+      <link>https://example.org/tags/lambda/</link>
+      <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/lambda/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Promise</title>
+      <link>https://example.org/tags/promise/</link>
+      <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/promise/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Try...catch</title>
+      <link>https://example.org/tags/try...catch/</link>
+      <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/try...catch/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Async</title>
+      <link>https://example.org/tags/async/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/async/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Concurrency</title>
+      <link>https://example.org/tags/concurrency/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/concurrency/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fetch API</title>
+      <link>https://example.org/tags/fetch-api/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/fetch-api/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Multithreading</title>
+      <link>https://example.org/tags/multithreading/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/multithreading/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Runnable</title>
+      <link>https://example.org/tags/runnable/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/runnable/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Thread</title>
+      <link>https://example.org/tags/thread/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/thread/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Web API</title>
+      <link>https://example.org/tags/web-api/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/web-api/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>BufferedReader</title>
+      <link>https://example.org/tags/bufferedreader/</link>
+      <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/bufferedreader/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DOM</title>
+      <link>https://example.org/tags/dom/</link>
+      <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/dom/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>File I/O</title>
+      <link>https://example.org/tags/file-i/o/</link>
+      <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/file-i/o/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>FileReader</title>
+      <link>https://example.org/tags/filereader/</link>
+      <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/filereader/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Files</title>
+      <link>https://example.org/tags/files/</link>
+      <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/files/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>FileWriter</title>
+      <link>https://example.org/tags/filewriter/</link>
+      <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/filewriter/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Frontend</title>
+      <link>https://example.org/tags/frontend/</link>
+      <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/frontend/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Context</title>
+      <link>https://example.org/tags/context/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/context/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Exception</title>
+      <link>https://example.org/tags/exception/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/exception/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Function</title>
+      <link>https://example.org/tags/function/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/function/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OOP</title>
+      <link>https://example.org/tags/oop/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/oop/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>This</title>
+      <link>https://example.org/tags/this/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/this/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Try-Catch</title>
+      <link>https://example.org/tags/try-catch/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/try-catch/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Collection</title>
+      <link>https://example.org/tags/collection/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/collection/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Execution Context</title>
+      <link>https://example.org/tags/execution-context/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/execution-context/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hoisting</title>
+      <link>https://example.org/tags/hoisting/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/hoisting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>List</title>
+      <link>https://example.org/tags/list/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/list/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Map</title>
+      <link>https://example.org/tags/map/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/map/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Scope</title>
+      <link>https://example.org/tags/scope/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/scope/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Set</title>
+      <link>https://example.org/tags/set/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/set/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Stream API</title>
+      <link>https://example.org/tags/stream-api/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/stream-api/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Variable</title>
+      <link>https://example.org/tags/variable/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/variable/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Await</title>
+      <link>https://example.org/tags/await/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/await/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Inheritance</title>
+      <link>https://example.org/tags/inheritance/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/inheritance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Override</title>
+      <link>https://example.org/tags/override/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/override/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Polymorphism</title>
+      <link>https://example.org/tags/polymorphism/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/polymorphism/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Abstraction</title>
+      <link>https://example.org/tags/abstraction/</link>
+      <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/abstraction/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Closure</title>
+      <link>https://example.org/tags/closure/</link>
+      <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/closure/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Encapsulation</title>
+      <link>https://example.org/tags/encapsulation/</link>
+      <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/encapsulation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Event Loop</title>
+      <link>https://example.org/tags/event-loop/</link>
+      <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/event-loop/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JVM</title>
+      <link>https://example.org/tags/jvm/</link>
+      <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/jvm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lập Trình Hướng Đối Tượng</title>
+      <link>https://example.org/tags/l%E1%BA%ADp-tr%C3%ACnh-h%C6%B0%E1%BB%9Bng-%C4%91%E1%BB%91i-t%C6%B0%E1%BB%A3ng/</link>
+      <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/l%E1%BA%ADp-tr%C3%ACnh-h%C6%B0%E1%BB%9Bng-%C4%91%E1%BB%91i-t%C6%B0%E1%BB%A3ng/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Macrotask</title>
+      <link>https://example.org/tags/macrotask/</link>
+      <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/macrotask/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microtask</title>
+      <link>https://example.org/tags/microtask/</link>
+      <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/microtask/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ngôn Ngữ Lập Trình</title>
+      <link>https://example.org/tags/ng%C3%B4n-ng%E1%BB%AF-l%E1%BA%ADp-tr%C3%ACnh/</link>
+      <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/ng%C3%B4n-ng%E1%BB%AF-l%E1%BA%ADp-tr%C3%ACnh/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

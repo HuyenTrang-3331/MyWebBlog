@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generics trong Java – Viết code tổng quát và an toàn kiểu dữ liệu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<article class="post-container">
+  <div class="post-card">
+    <h1 class="post-title">Generics trong Java – Viết code tổng quát và an toàn kiểu dữ liệu</h1>
+    <p class="post-date">🕓 Đăng ngày 15/10/2025</p>
+
+    
+    <img src="/images/generics-trong-java.jpg" alt="Generics trong Java – Viết code tổng quát và an toàn kiểu dữ liệu" class="post-image" />
+    
+
+    <div class="post-content">
+      <blockquote>
+<p>☕ <strong>“Generics giúp Java an toàn và mạnh mẽ hơn.”</strong></p></blockquote>
+<p>Generics là một trong những tính năng quan trọng nhất của Java, giúp bạn <strong>viết code tổng quát</strong> mà vẫn đảm bảo <strong>kiểm tra kiểu dữ liệu (type safety)</strong> ngay khi biên dịch.</p>
+<hr>
+<h1 id="-1-generics-là-gì">🧠 1. Generics là gì?</h1>
+<p>Generics cho phép <strong>tham số hóa kiểu dữ liệu</strong> (parameterized types).<br>
+Thay vì chỉ định kiểu cụ thể, bạn có thể dùng <strong>biến kiểu (type variable)</strong> như <code>&lt;T&gt;</code>.</p>
+<p>Ví dụ không dùng Generics:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList();
+</span></span><span style="display:flex;"><span>list.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;Hello&#34;</span>);
+</span></span><span style="display:flex;"><span>String s <span style="color:#f92672">=</span> (String) list.<span style="color:#a6e22e">get</span>(0); <span style="color:#75715e">// phải ép kiểu</span>
+</span></span></code></pre></div><p>Dùng Generics:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>list.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;Hello&#34;</span>);
+</span></span><span style="display:flex;"><span>String s <span style="color:#f92672">=</span> list.<span style="color:#a6e22e">get</span>(0); <span style="color:#75715e">// không cần ép kiểu</span>
+</span></span></code></pre></div><blockquote>
+<p>✅ Generics giúp tránh lỗi ép kiểu và dễ đọc hơn.</p></blockquote>
+<hr>
+<h1 id="-2-cú-pháp-generics-cơ-bản">⚙️ 2. Cú pháp Generics cơ bản</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Box</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> T value;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">set</span>(T value) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> value;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">get</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> value;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Box<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> intBox <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Box<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        intBox.<span style="color:#a6e22e">set</span>(100);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(intBox.<span style="color:#a6e22e">get</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>100</code></p>
+<blockquote>
+<p>💡 <code>&lt;T&gt;</code> là placeholder cho kiểu dữ liệu, được xác định khi tạo đối tượng.</p></blockquote>
+<hr>
+<h1 id="-3-generics-với-nhiều-tham-số-kiểu">🔁 3. Generics với nhiều tham số kiểu</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Pair</span><span style="color:#f92672">&lt;</span>K, V<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> K key;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> V value;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Pair</span>(K key, V value) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> key;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> value;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> K <span style="color:#a6e22e">getKey</span>() { <span style="color:#66d9ef">return</span> key; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> V <span style="color:#a6e22e">getValue</span>() { <span style="color:#66d9ef">return</span> value; }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Pair<span style="color:#f92672">&lt;</span>String, Integer<span style="color:#f92672">&gt;</span> pair <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Pair<span style="color:#f92672">&lt;&gt;</span>(<span style="color:#e6db74">&#34;Tuổi&#34;</span>, 22);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(pair.<span style="color:#a6e22e">getKey</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> pair.<span style="color:#a6e22e">getValue</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>Tuổi: 22</code></p>
+<hr>
+<h1 id="-4-giới-hạn-kiểu-bounded-type-parameters">🧩 4. Giới hạn kiểu (Bounded Type Parameters)</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Calculator</span><span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> Number<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">square</span>(T num) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> num.<span style="color:#a6e22e">doubleValue</span>() <span style="color:#f92672">*</span> num.<span style="color:#a6e22e">doubleValue</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Calculator<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> c1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Calculator<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(c1.<span style="color:#a6e22e">square</span>(5)); <span style="color:#75715e">// 25.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Calculator&lt;String&gt; c2 = new Calculator&lt;&gt;(); ❌ lỗi</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>⚙️ <code>T extends Number</code> nghĩa là T chỉ được là các kiểu con của <code>Number</code> (<code>Integer</code>, <code>Double</code>, …).</p></blockquote>
+<hr>
+<h1 id="-5-wildcards--trong-generics">🔍 5. Wildcards (?) trong Generics</h1>
+<p>Dấu <code>?</code> đại diện cho <strong>một kiểu không xác định</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printList</span>(List<span style="color:#f92672">&lt;?&gt;</span> list) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (Object elem : list) {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(elem);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> names <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">asList</span>(<span style="color:#e6db74">&#34;Trang&#34;</span>, <span style="color:#e6db74">&#34;Java&#34;</span>, <span style="color:#e6db74">&#34;Generics&#34;</span>);
+</span></span><span style="display:flex;"><span>    printList(names);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>Trang
+Java
+Generics
+</code></pre><hr>
+<h1 id="-6-upper-và-lower-bound-wildcards">⚡ 6. Upper và Lower Bound Wildcards</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Loại</th>
+          <th>Cú pháp</th>
+          <th>Mô tả</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Upper Bound</td>
+          <td><code>&lt;? extends Number&gt;</code></td>
+          <td>Chấp nhận <code>Number</code> hoặc lớp con</td>
+      </tr>
+      <tr>
+          <td>Lower Bound</td>
+          <td><code>&lt;? super Integer&gt;</code></td>
+          <td>Chấp nhận <code>Integer</code> hoặc lớp cha</td>
+      </tr>
+  </tbody>
+</table>
+<p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">process</span>(List<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> Number<span style="color:#f92672">&gt;</span> list) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (Number n : list) System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(n.<span style="color:#a6e22e">doubleValue</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h1 id="-7-generics-trong-method">🧱 7. Generics trong Method</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display</span>(T<span style="color:#f92672">[]</span> array) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (T item : array) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(item);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        String<span style="color:#f92672">[]</span> names <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Java&#34;</span>, <span style="color:#e6db74">&#34;Spring&#34;</span>, <span style="color:#e6db74">&#34;OOP&#34;</span>};
+</span></span><span style="display:flex;"><span>        display(names);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>Java
+Spring
+OOP
+</code></pre><blockquote>
+<p>💡 Phương thức có thể độc lập với kiểu của lớp chứa nó.</p></blockquote>
+<hr>
+<h1 id="-8-generics-trong-interface">🧮 8. Generics trong Interface</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Container</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(T item);
+</span></span><span style="display:flex;"><span>    T <span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StringContainer</span> <span style="color:#66d9ef">implements</span> Container<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String data;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(String item) { data <span style="color:#f92672">=</span> item; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">get</span>() { <span style="color:#66d9ef">return</span> data; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>💡 Interface generics giúp tái sử dụng dễ dàng với nhiều kiểu dữ liệu khác nhau.</p></blockquote>
+<hr>
+<h1 id="-9-lợi-ích-của-generics">🔒 9. Lợi ích của Generics</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Lợi ích</th>
+          <th>Mô tả</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>An toàn kiểu (Type Safety)</strong></td>
+          <td>Phát hiện lỗi sai kiểu ngay khi biên dịch</td>
+      </tr>
+      <tr>
+          <td><strong>Tái sử dụng code (Reusability)</strong></td>
+          <td>Viết một lần – dùng cho nhiều kiểu khác nhau</td>
+      </tr>
+      <tr>
+          <td><strong>Không cần ép kiểu (No Casting)</strong></td>
+          <td>Lấy dữ liệu đúng kiểu ngay lập tức</td>
+      </tr>
+      <tr>
+          <td><strong>Tăng khả năng đọc hiểu</strong></td>
+          <td>Code rõ ràng, dễ duy trì</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-10-tổng-kết-kiến-thức">🧾 10. Tổng kết kiến thức</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Thành phần</th>
+          <th>Vai trò</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&lt;T&gt;</code></td>
+          <td>Kiểu tổng quát</td>
+          <td><code>class Box&lt;T&gt;</code></td>
+      </tr>
+      <tr>
+          <td><code>&lt;K,V&gt;</code></td>
+          <td>Cặp khóa – giá trị</td>
+          <td><code>class Pair&lt;K,V&gt;</code></td>
+      </tr>
+      <tr>
+          <td><code>extends</code></td>
+          <td>Giới hạn kiểu trên</td>
+          <td><code>&lt;T extends Number&gt;</code></td>
+      </tr>
+      <tr>
+          <td><code>super</code></td>
+          <td>Giới hạn kiểu dưới</td>
+          <td><code>&lt;? super Integer&gt;</code></td>
+      </tr>
+      <tr>
+          <td><code>?</code></td>
+          <td>Wildcard (kiểu bất kỳ)</td>
+          <td><code>List&lt;?&gt;</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-kết-luận">🎯 Kết luận</h1>
+<ul>
+<li>Generics giúp code <strong>an toàn kiểu, dễ bảo trì và tái sử dụng</strong>.</li>
+<li>Hiểu rõ <code>&lt;T&gt;</code>, <code>?</code>, <code>extends</code>, <code>super</code> là nền tảng của Java hiện đại.</li>
+<li>Khi kết hợp với <strong>Collections</strong> và <strong>Stream API</strong>, Generics giúp Java <strong>trở thành ngôn ngữ mạnh mẽ và ổn định hơn.</strong></li>
+</ul>
+<blockquote>
+<p>💡 <strong>“Generics là cách Java giữ vững sự an toàn mà vẫn linh hoạt.”</strong></p></blockquote>
+<hr>
+<h1 id="-tài-liệu-tham-khảo">📚 Tài liệu tham khảo</h1>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/generics/">Oracle – Java Generics</a></li>
+<li><a href="https://www.w3schools.com/java/java_generics.asp">W3Schools – Java Generics</a></li>
+<li><a href="https://www.geeksforgeeks.org/generics-in-java/">GeeksForGeeks – Generics in Java</a></li>
+</ul>
+
+    </div>
+
+    <div class="back-link">
+      <a href="/blog/">← Quay lại danh sách bài viết</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .post-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .post-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+  }
+
+  body.dark .post-card {
+    background: #1f2937;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .post-date {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+  }
+
+  .post-content h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+  }
+
+  .post-content p {
+    margin-bottom: 1rem;
+  }
+
+  .post-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+  }
+
+  body.dark .post-content code {
+    background: #374151;
+  }
+
+  pre {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  body.dark pre {
+    background: #111827;
+  }
+
+  .back-link {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .back-link a {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .back-link a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+.post-content a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.post-content a:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+body.dark .post-content a {
+  color: #93c5fd; 
+
+body.dark .post-content a:hover {
+  color: #60a5fa; 
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+</style>
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

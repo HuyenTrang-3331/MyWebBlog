@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collection và Stream API trong Java – Làm việc hiệu quả với dữ liệu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<article class="post-container">
+  <div class="post-card">
+    <h1 class="post-title">Collection và Stream API trong Java – Làm việc hiệu quả với dữ liệu</h1>
+    <p class="post-date">🕓 Đăng ngày 20/09/2025</p>
+
+    
+    <img src="/images/java-collections.jpg" alt="Collection và Stream API trong Java – Làm việc hiệu quả với dữ liệu" class="post-image" />
+    
+
+    <div class="post-content">
+      <blockquote>
+<p>☕ <strong>“Collection để lưu trữ, Stream để xử lý.”</strong></p></blockquote>
+<p>Java cung cấp <strong>Collection Framework</strong> để lưu trữ dữ liệu và <strong>Stream API</strong> để xử lý dữ liệu theo phong cách hàm (functional style).<br>
+Cùng tìm hiểu chi tiết để làm chủ hai công cụ mạnh mẽ này nhé!</p>
+<hr>
+<h1 id="-1-collection-framework-là-gì">🧩 1. Collection Framework là gì?</h1>
+<p><strong>Collection Framework</strong> là tập hợp các lớp &amp; interface giúp quản lý nhóm đối tượng (objects).<br>
+Thay vì dùng mảng cố định, Collection linh hoạt hơn, có thể thêm/xóa phần tử dễ dàng.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Nhóm Collection</th>
+          <th>Interface chính</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>List</strong></td>
+          <td><code>List&lt;E&gt;</code></td>
+          <td><code>ArrayList</code>, <code>LinkedList</code></td>
+      </tr>
+      <tr>
+          <td><strong>Set</strong></td>
+          <td><code>Set&lt;E&gt;</code></td>
+          <td><code>HashSet</code>, <code>TreeSet</code></td>
+      </tr>
+      <tr>
+          <td><strong>Queue</strong></td>
+          <td><code>Queue&lt;E&gt;</code></td>
+          <td><code>LinkedList</code>, <code>PriorityQueue</code></td>
+      </tr>
+      <tr>
+          <td><strong>Map</strong></td>
+          <td><code>Map&lt;K,V&gt;</code></td>
+          <td><code>HashMap</code>, <code>TreeMap</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-2-làm-việc-với-list">⚙️ 2. Làm việc với List</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExampleList</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> names <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        names.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;Trang&#34;</span>);
+</span></span><span style="display:flex;"><span>        names.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;Huyền&#34;</span>);
+</span></span><span style="display:flex;"><span>        names.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;Java&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (String name : names) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(name);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>Trang
+Huyền
+Java
+</code></pre><p>💡 <code>ArrayList</code> là danh sách động – cho phép thêm phần tử mà không cần khai báo kích thước trước.</p>
+<hr>
+<h1 id="-3-làm-việc-với-set-không-trùng-lặp">🧱 3. Làm việc với Set (không trùng lặp)</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExampleSet</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Set<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        nums.<span style="color:#a6e22e">add</span>(1);
+</span></span><span style="display:flex;"><span>        nums.<span style="color:#a6e22e">add</span>(2);
+</span></span><span style="display:flex;"><span>        nums.<span style="color:#a6e22e">add</span>(2); <span style="color:#75715e">// trùng, bị bỏ qua</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(nums);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>[1, 2]</code></p>
+<blockquote>
+<p>✅ Set tự động loại bỏ phần tử trùng lặp.</p></blockquote>
+<hr>
+<h1 id="-4-làm-việc-với-map-key-value">🔑 4. Làm việc với Map (key-value)</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExampleMap</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Map<span style="color:#f92672">&lt;</span>String, Integer<span style="color:#f92672">&gt;</span> scores <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        scores.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;Trang&#34;</span>, 95);
+</span></span><span style="display:flex;"><span>        scores.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;Huyền&#34;</span>, 88);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (String key : scores.<span style="color:#a6e22e">keySet</span>()) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(key <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; =&gt; &#34;</span> <span style="color:#f92672">+</span> scores.<span style="color:#a6e22e">get</span>(key));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>Trang =&gt; 95
+Huyền =&gt; 88
+</code></pre><p>💡 Map không phải là Collection, nhưng thuộc cùng framework.<br>
+Mỗi <code>key</code> chỉ xuất hiện <strong>một lần</strong>.</p>
+<hr>
+<h1 id="-5-so-sánh-list-set-map">⚡ 5. So sánh List, Set, Map</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Đặc điểm</th>
+          <th>List</th>
+          <th>Set</th>
+          <th>Map</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Cho phép trùng lặp</td>
+          <td>✅ Có</td>
+          <td>❌ Không</td>
+          <td>❌ Key không trùng</td>
+      </tr>
+      <tr>
+          <td>Thứ tự phần tử</td>
+          <td>✅ Có</td>
+          <td>❌ Không đảm bảo</td>
+          <td>Không bắt buộc</td>
+      </tr>
+      <tr>
+          <td>Truy cập theo chỉ số</td>
+          <td>✅ Có</td>
+          <td>❌ Không</td>
+          <td>❌ Không</td>
+      </tr>
+      <tr>
+          <td>Cấu trúc chính</td>
+          <td>Mảng động</td>
+          <td>Tập hợp duy nhất</td>
+          <td>Cặp khóa-giá trị</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-6-stream-api-là-gì">🔍 6. Stream API là gì?</h1>
+<p><strong>Stream API</strong> (Java 8+) giúp xử lý dữ liệu theo luồng, thay vì vòng lặp thông thường.<br>
+Cú pháp <strong>ngắn gọn, dễ đọc, và dễ song song hóa.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StreamExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">asList</span>(1, 2, 3, 4, 5);
+</span></span><span style="display:flex;"><span>        nums.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">filter</span>(n <span style="color:#f92672">-&gt;</span> n <span style="color:#f92672">%</span> 2 <span style="color:#f92672">==</span> 0)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">map</span>(n <span style="color:#f92672">-&gt;</span> n <span style="color:#f92672">*</span> n)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">forEach</span>(System.<span style="color:#a6e22e">out</span>::println);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>4
+16
+</code></pre><hr>
+<h1 id="-7-các-thao-tác-phổ-biến-trong-stream">🔁 7. Các thao tác phổ biến trong Stream</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Phương thức</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>filter()</code></td>
+          <td>Lọc phần tử theo điều kiện</td>
+          <td><code>n -&gt; n &gt; 5</code></td>
+      </tr>
+      <tr>
+          <td><code>map()</code></td>
+          <td>Biến đổi giá trị</td>
+          <td><code>n -&gt; n * n</code></td>
+      </tr>
+      <tr>
+          <td><code>forEach()</code></td>
+          <td>Duyệt qua phần tử</td>
+          <td><code>System.out::println</code></td>
+      </tr>
+      <tr>
+          <td><code>sorted()</code></td>
+          <td>Sắp xếp</td>
+          <td><code>stream.sorted()</code></td>
+      </tr>
+      <tr>
+          <td><code>collect()</code></td>
+          <td>Gom dữ liệu thành danh sách</td>
+          <td><code>Collectors.toList()</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-8-stream-với-collectors">🧮 8. Stream với Collectors</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.*;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.stream.Collectors;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CollectExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> names <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">asList</span>(<span style="color:#e6db74">&#34;Trang&#34;</span>, <span style="color:#e6db74">&#34;Java&#34;</span>, <span style="color:#e6db74">&#34;Spring&#34;</span>, <span style="color:#e6db74">&#34;Java&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> unique <span style="color:#f92672">=</span> names.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">distinct</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">collect</span>(Collectors.<span style="color:#a6e22e">toList</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(unique);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>[Trang, Java, Spring]</code></p>
+<blockquote>
+<p>💡 <code>distinct()</code> loại bỏ phần tử trùng, <code>collect()</code> gom lại thành List mới.</p></blockquote>
+<hr>
+<h1 id="-9-stream-song-song-parallel-stream">🚀 9. Stream song song (Parallel Stream)</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.*;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ParallelExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> numbers <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">asList</span>(1,2,3,4,5,6,7,8,9);
+</span></span><span style="display:flex;"><span>        numbers.<span style="color:#a6e22e">parallelStream</span>()
+</span></span><span style="display:flex;"><span>               .<span style="color:#a6e22e">map</span>(n <span style="color:#f92672">-&gt;</span> n <span style="color:#f92672">*</span> 2)
+</span></span><span style="display:flex;"><span>               .<span style="color:#a6e22e">forEach</span>(System.<span style="color:#a6e22e">out</span>::println);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>✅ Dữ liệu được xử lý <strong>song song trên nhiều luồng CPU</strong>, giúp tăng hiệu năng.</p>
+<hr>
+<h1 id="-10-tổng-kết-kiến-thức">🧾 10. Tổng kết kiến thức</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Thành phần</th>
+          <th>Vai trò</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>List</strong></td>
+          <td>Danh sách có thứ tự</td>
+          <td><code>ArrayList</code>, <code>LinkedList</code></td>
+      </tr>
+      <tr>
+          <td><strong>Set</strong></td>
+          <td>Tập hợp không trùng</td>
+          <td><code>HashSet</code>, <code>TreeSet</code></td>
+      </tr>
+      <tr>
+          <td><strong>Map</strong></td>
+          <td>Lưu cặp key-value</td>
+          <td><code>HashMap</code>, <code>TreeMap</code></td>
+      </tr>
+      <tr>
+          <td><strong>Stream API</strong></td>
+          <td>Xử lý dữ liệu theo luồng</td>
+          <td><code>stream().filter().map()</code></td>
+      </tr>
+      <tr>
+          <td><strong>Parallel Stream</strong></td>
+          <td>Xử lý song song</td>
+          <td><code>parallelStream()</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-kết-luận">🎯 Kết luận</h1>
+<ul>
+<li><strong>Collection Framework</strong> giúp quản lý dữ liệu linh hoạt và mạnh mẽ.</li>
+<li><strong>Stream API</strong> giúp xử lý dữ liệu nhanh, ngắn gọn, và dễ song song hóa.</li>
+<li>Khi kết hợp cả hai, bạn có thể xử lý dữ liệu phức tạp trong Java một cách <strong>tối ưu và hiện đại</strong>.</li>
+</ul>
+<blockquote>
+<p>☕ <strong>“Collection là kho dữ liệu – Stream là dòng chảy xử lý.”</strong></p></blockquote>
+<hr>
+<h1 id="-tài-liệu-tham-khảo">📚 Tài liệu tham khảo</h1>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html">Oracle – Java Collections Framework</a></li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">Oracle – Stream API</a></li>
+<li><a href="https://www.w3schools.com/java/java_arraylist.asp">W3Schools – Java Collections</a></li>
+<li><a href="https://www.geeksforgeeks.org/stream-in-java/">GeeksForGeeks – Stream API</a></li>
+</ul>
+
+    </div>
+
+    <div class="back-link">
+      <a href="/blog/">← Quay lại danh sách bài viết</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .post-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .post-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+  }
+
+  body.dark .post-card {
+    background: #1f2937;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .post-date {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+  }
+
+  .post-content h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+  }
+
+  .post-content p {
+    margin-bottom: 1rem;
+  }
+
+  .post-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+  }
+
+  body.dark .post-content code {
+    background: #374151;
+  }
+
+  pre {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  body.dark pre {
+    background: #111827;
+  }
+
+  .back-link {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .back-link a {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .back-link a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+.post-content a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.post-content a:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+body.dark .post-content a {
+  color: #93c5fd; 
+
+body.dark .post-content a:hover {
+  color: #60a5fa; 
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+</style>
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

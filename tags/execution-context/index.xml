@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Execution Context on Lê Thị Huyền Trang</title>
+    <link>https://example.org/tags/execution-context/</link>
+    <description>Recent content in Execution Context on Lê Thị Huyền Trang</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/execution-context/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hoisting và Scope trong JavaScript – Hiểu sâu cách trình thông dịch hoạt động</title>
+      <link>https://example.org/blog/04-hoisting-va-scope/</link>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/04-hoisting-va-scope/</guid>
+      <description>Hoisting và Scope là nền tảng giúp bạn hiểu cách trình thông dịch JavaScript hoạt động. Bài viết này sẽ giúp bạn phân biệt var, let, const, phạm vi hàm, khối, và hiện tượng hoisting khi biên dịch mã JS.</description>
+    </item>
+  </channel>
+</rss>

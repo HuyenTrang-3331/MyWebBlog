@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hiểu rõ về Closure trong JavaScript – Bí mật đằng sau sức mạnh của hàm</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<article class="post-container">
+  <div class="post-card">
+    <h1 class="post-title">Hiểu rõ về Closure trong JavaScript – Bí mật đằng sau sức mạnh của hàm</h1>
+    <p class="post-date">🕓 Đăng ngày 10/09/2025</p>
+
+    
+    <img src="/images/closure.jpg" alt="Hiểu rõ về Closure trong JavaScript – Bí mật đằng sau sức mạnh của hàm" class="post-image" />
+    
+
+    <div class="post-content">
+      <blockquote>
+<p>🧠 <strong>“Closure – nền tảng cho sức mạnh và sự linh hoạt của JavaScript.”</strong></p></blockquote>
+<p>Closure là một trong những <strong>khái niệm cốt lõi và quan trọng nhất</strong> của JavaScript.<br>
+Nó là thứ làm cho JS có thể thực hiện các tính năng như <strong>callback, module, private variable</strong>, và xử lý <strong>bất đồng bộ</strong> mượt mà.</p>
+<hr>
+<h1 id="-1-closure-là-gì">📘 1. Closure là gì?</h1>
+<p>Closure xuất hiện khi một <strong>hàm được định nghĩa bên trong một hàm khác</strong><br>
+và <strong>hàm con có thể truy cập các biến của hàm cha</strong>,<br>
+ngay cả sau khi hàm cha đã kết thúc thực thi.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">outer</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Xin chào từ outer!&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">inner</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">inner</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">greet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">outer</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">greet</span>(); <span style="color:#75715e">// 👉 &#34;Xin chào từ outer!&#34;
+</span></span></span></code></pre></div><p>📌 Biến <code>message</code> không bị mất khi <code>outer()</code> chạy xong,<br>
+vì <code>inner()</code> vẫn “đóng gói” (closure) biến đó lại trong bộ nhớ.</p>
+<hr>
+<h1 id="-2-cơ-chế-hoạt-động-của-closure">🔍 2. Cơ chế hoạt động của Closure</h1>
+<p>Khi JavaScript thực thi một hàm, nó tạo ra một <strong>Execution Context</strong> mới.<br>
+Mỗi hàm đều có phạm vi của riêng nó, nhưng hàm con <strong>kế thừa phạm vi của hàm cha</strong> thông qua <strong>Scope Chain</strong>.</p>
+<pre tabindex="0"><code>Global Scope
+ └── outer() Scope
+      └── inner() Scope
+</code></pre><p>💡 Mỗi khi <code>outer()</code> chạy, <code>message</code> được tạo mới.<br>
+Hàm <code>inner()</code> tham chiếu đến <code>message</code> thông qua <strong>Lexical Scope</strong> (phạm vi tĩnh theo vị trí viết trong code).</p>
+<hr>
+<h1 id="-3-vì-sao-closure-quan-trọng">⚙️ 3. Vì sao Closure quan trọng?</h1>
+<p>Closure giúp <strong>duy trì trạng thái</strong>, <strong>bảo mật dữ liệu</strong>, và <strong>xây dựng module riêng biệt</strong>.<br>
+Dưới đây là một số ứng dụng điển hình:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Ứng dụng</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Giữ trạng thái (State)</strong></td>
+          <td>Lưu dữ liệu giữa các lần gọi hàm</td>
+          <td><code>counter()</code></td>
+      </tr>
+      <tr>
+          <td><strong>Ẩn thông tin (Encapsulation)</strong></td>
+          <td>Giữ biến private, tránh truy cập ngoài ý muốn</td>
+          <td><code>createUser()</code></td>
+      </tr>
+      <tr>
+          <td><strong>Callback / Async logic</strong></td>
+          <td>Truy cập biến cha trong async function</td>
+          <td><code>setTimeout()</code></td>
+      </tr>
+      <tr>
+          <td><strong>Function Factory</strong></td>
+          <td>Tạo ra các hàm cấu hình động</td>
+          <td><code>makeMultiplier(5)</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-4-ví-dụ-tạo-bộ-đếm-bằng-closure">🔢 4. Ví dụ: Tạo bộ đếm bằng Closure</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">counter</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// biến &#34;private&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">count</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Giá trị hiện tại:&#34;</span>, <span style="color:#a6e22e">count</span>);
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">add</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">counter</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">add</span>(); <span style="color:#75715e">// 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">add</span>(); <span style="color:#75715e">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">add</span>(); <span style="color:#75715e">// 3
+</span></span></span></code></pre></div><p>🎯 Mỗi lần gọi <code>add()</code>, hàm vẫn “nhớ” được giá trị <code>count</code> dù <code>counter()</code> đã xong.</p>
+<hr>
+<h1 id="-5-closure-trong-vòng-lặp">🧩 5. Closure trong vòng lặp</h1>
+<p>Một lỗi kinh điển khi dùng <code>var</code> trong vòng lặp:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(() =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>), <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 👉 In ra: 4, 4, 4
+</span></span></span></code></pre></div><p>💥 Vì <code>var</code> không có block scope, chỉ có <strong>một biến i duy nhất</strong>.</p>
+<p>✅ Cách sửa với <code>let</code> (tạo phạm vi riêng cho từng vòng lặp):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(() =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>), <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 👉 In ra: 1, 2, 3
+</span></span></span></code></pre></div><hr>
+<h1 id="-6-closure-trong-thực-tế-ứng-dụng-nâng-cao">⚡ 6. Closure trong thực tế (ứng dụng nâng cao)</h1>
+<h3 id="-61--duy-trì-trạng-thái-trong-module">🔹 6.1 – Duy trì trạng thái trong module</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createUser</span>(<span style="color:#a6e22e">name</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">score</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getName</span><span style="color:#f92672">:</span> () =&gt; <span style="color:#a6e22e">name</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">increase</span><span style="color:#f92672">:</span> () =&gt; <span style="color:#a6e22e">score</span><span style="color:#f92672">++</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getScore</span><span style="color:#f92672">:</span> () =&gt; <span style="color:#a6e22e">score</span>
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createUser</span>(<span style="color:#e6db74">&#34;Trang&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">increase</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">increase</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">getName</span>()<span style="color:#e6db74">}</span><span style="color:#e6db74"> có điểm: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">getScore</span>()<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>Trang có điểm: 2
+</code></pre><hr>
+<h3 id="-62--function-factory">🔹 6.2 – Function Factory</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">makeMultiplier</span>(<span style="color:#a6e22e">x</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">y</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">y</span>;
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">makeMultiplier</span>(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">triple</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">makeMultiplier</span>(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">double</span>(<span style="color:#ae81ff">5</span>)); <span style="color:#75715e">// 10
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">triple</span>(<span style="color:#ae81ff">5</span>)); <span style="color:#75715e">// 15
+</span></span></span></code></pre></div><p>💡 Mỗi hàm <code>double</code> và <code>triple</code> giữ lại biến <code>x</code> khác nhau.</p>
+<hr>
+<h1 id="-7-closure-và-bất-đồng-bộ-async">🚀 7. Closure và bất đồng bộ (Async)</h1>
+<p>Closure giúp async function <strong>truy cập đúng giá trị</strong> tại thời điểm gọi.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fetchData</span>(<span style="color:#a6e22e">url</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Lấy dữ liệu từ </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>  }, <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fetchData</span>(<span style="color:#e6db74">&#34;https://api.github.com/users/trang&#34;</span>);
+</span></span></code></pre></div><p>Ở đây, <code>url</code> vẫn tồn tại trong closure của callback <code>setTimeout</code>,<br>
+nên dù 1 giây sau, giá trị <code>url</code> vẫn chính xác.</p>
+<hr>
+<h1 id="-8-các-lỗi-thường-gặp-với-closure">🧱 8. Các lỗi thường gặp với Closure</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Lỗi</th>
+          <th>Nguyên nhân</th>
+          <th>Cách khắc phục</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Lưu sai giá trị trong vòng lặp</strong></td>
+          <td>Dùng <code>var</code> khiến biến bị ghi đè</td>
+          <td>Dùng <code>let</code> hoặc IIFE</td>
+      </tr>
+      <tr>
+          <td><strong>Giữ quá nhiều biến trong closure</strong></td>
+          <td>Không giải phóng biến → rò rỉ bộ nhớ</td>
+          <td>Đặt closure trong phạm vi giới hạn</td>
+      </tr>
+      <tr>
+          <td><strong>Không hiểu phạm vi từ vựng (Lexical Scope)</strong></td>
+          <td>Closure truy cập theo vị trí khai báo, không theo nơi gọi</td>
+          <td>Hiểu rõ scope chain</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-9-hình-minh-họa-cơ-chế-closure">🧮 9. Hình minh họa cơ chế Closure</h1>
+<pre tabindex="0"><code>Global Scope
+ ├── function outer()
+ │     ├── biến: message
+ │     └── function inner()
+ │           └── có thể truy cập message
+ └── inner() được trả ra ngoài → vẫn giữ link đến message
+</code></pre><blockquote>
+<p>💡 Closure = Hàm + Môi trường nơi nó được tạo ra.</p></blockquote>
+<hr>
+<h1 id="-10-tổng-kết-kiến-thức">🧾 10. Tổng kết kiến thức</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Thành phần</th>
+          <th>Vai trò</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Scope Chain</strong></td>
+          <td>Xác định phạm vi truy cập biến</td>
+          <td><code>let</code>, <code>const</code></td>
+      </tr>
+      <tr>
+          <td><strong>Closure</strong></td>
+          <td>Hàm nhớ biến của hàm cha</td>
+          <td><code>counter()</code></td>
+      </tr>
+      <tr>
+          <td><strong>Private Variable</strong></td>
+          <td>Biến chỉ tồn tại trong closure</td>
+          <td><code>score</code> trong <code>createUser()</code></td>
+      </tr>
+      <tr>
+          <td><strong>Function Factory</strong></td>
+          <td>Tạo ra hàm mới dựa vào tham số</td>
+          <td><code>makeMultiplier(3)</code></td>
+      </tr>
+      <tr>
+          <td><strong>Async Callback</strong></td>
+          <td>Ghi nhớ biến khi chạy bất đồng bộ</td>
+          <td><code>setTimeout()</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-kết-luận">🎯 Kết luận</h1>
+<ul>
+<li>Closure là <strong>một trong những khái niệm quan trọng nhất</strong> của JavaScript.</li>
+<li>Nó giúp <strong>hàm nhớ được môi trường ban đầu</strong>,<br>
+từ đó làm nên các kỹ thuật như: <strong>Module Pattern</strong>, <strong>Callback</strong>, <strong>Async/Await</strong>, <strong>Factory Function</strong>.</li>
+<li>Nếu hiểu rõ Closure, bạn sẽ <strong>tư duy đúng về scope, memory, và lập trình bất đồng bộ.</strong></li>
+</ul>
+<blockquote>
+<p>💡 “Mọi framework JS hiện đại – React, Vue, Node – đều dựa trên nguyên tắc Closure.”</p></blockquote>
+<hr>
+<h1 id="-tài-liệu-tham-khảo">📚 Tài liệu tham khảo</h1>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">MDN – Closures</a></li>
+<li><a href="https://javascript.info/closure">JavaScript.info – Closure</a></li>
+<li><a href="https://www.freecodecamp.org/news/understanding-closures-in-javascript/">FreeCodeCamp – Understanding Closures</a></li>
+<li><a href="https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed/scope-closures">You Don’t Know JS – Scope &amp; Closures</a></li>
+</ul>
+
+    </div>
+
+    <div class="back-link">
+      <a href="/blog/">← Quay lại danh sách bài viết</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .post-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .post-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+  }
+
+  body.dark .post-card {
+    background: #1f2937;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .post-date {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+  }
+
+  .post-content h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+  }
+
+  .post-content p {
+    margin-bottom: 1rem;
+  }
+
+  .post-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+  }
+
+  body.dark .post-content code {
+    background: #374151;
+  }
+
+  pre {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  body.dark pre {
+    background: #111827;
+  }
+
+  .back-link {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .back-link a {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .back-link a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+.post-content a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.post-content a:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+body.dark .post-content a {
+  color: #93c5fd; 
+
+body.dark .post-content a:hover {
+  color: #60a5fa; 
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+</style>
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+  background: #f7f9fc;
+  min-height: 90vh;
+}
+
+.profile-card {
+  max-width: 720px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  padding: 3rem 2.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.tagline {
+  color: #007bff;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.subtag {
+  color: #555;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.quote {
+  font-size: 1.1rem;
+  color: #333;
+  font-style: italic;
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+  margin: 1rem 0 2rem;
+}
+
+.contact-info p {
+  margin: 0.3rem 0;
+  color: #444;
+}
+
+.skills {
+  text-align: left;
+  margin: 2rem 0;
+}
+
+.skills h3 {
+  color: #007bff;
+  margin-bottom: 0.5rem;
+}
+
+.skills ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills li {
+  background: #eef3ff;
+  margin: 0.3rem 0;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  color: #333;
+}
+
+.social-links {
+  margin-top: 2rem;
+}
+
+.social-links h3 {
+  color: #007bff;
+  margin-bottom: 0.8rem;
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 0.4rem 0.6rem;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+  color: #0056b3;
+}

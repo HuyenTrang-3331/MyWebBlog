@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Try-Catch on Lê Thị Huyền Trang</title>
+    <link>https://example.org/tags/try-catch/</link>
+    <description>Recent content in Try-Catch on Lê Thị Huyền Trang</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/try-catch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Xử lý ngoại lệ (Exception Handling) trong Java – Giúp chương trình an toàn hơn</title>
+      <link>https://example.org/blog/15-exception-handling/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/15-exception-handling/</guid>
+      <description>Tìm hiểu cách xử lý ngoại lệ (Exception Handling) trong Java để chương trình không bị dừng đột ngột. Học cách dùng try-catch-finally, throw, throws và tạo ngoại lệ tùy chỉnh.</description>
+    </item>
+  </channel>
+</rss>

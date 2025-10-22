@@ -1,0 +1,42 @@
+/* =====================================
+   Bảng có khung cho Hugo PaperMod
+   ===================================== */
+.post-single table, 
+.post-single table * {
+  border: 1px solid #cfcfcf !important;
+  border-collapse: collapse !important;
+  box-sizing: border-box !important;
+}
+
+.post-single table {
+  width: 100% !important;
+  margin: 1.5rem 0 !important;
+  font-size: 0.95rem !important;
+  border-spacing: 0 !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+}
+
+.post-single th {
+  background: #f3f4f6 !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  padding: 10px 14px !important;
+}
+
+.post-single td {
+  padding: 10px 14px !important;
+  background: #ffffff !important;
+}
+
+.post-single tr:nth-child(even) td {
+  background: #fafafa !important;
+}
+
+.post-single table code {
+  background: #f8f9fa !important;
+  color: #c7254e !important;
+  font-family: "Fira Code", monospace !important;
+  padding: 2px 5px !important;
+  border-radius: 4px !important;
+}

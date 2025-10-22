@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lambda Expression và Functional Interface trong Java 8&#43; – Viết code ngắn gọn và hiện đại</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<article class="post-container">
+  <div class="post-card">
+    <h1 class="post-title">Lambda Expression và Functional Interface trong Java 8&#43; – Viết code ngắn gọn và hiện đại</h1>
+    <p class="post-date">🕓 Đăng ngày 10/10/2025</p>
+
+    
+    <img src="/images/lambda-va-functional-interface.jpg" alt="Lambda Expression và Functional Interface trong Java 8&#43; – Viết code ngắn gọn và hiện đại" class="post-image" />
+    
+
+    <div class="post-content">
+      <blockquote>
+<p>☕ <strong>“Lambda biến Java từ ngôn ngữ hướng đối tượng thành hướng hàm.”</strong></p></blockquote>
+<p>Kể từ Java 8, lập trình viên có thể viết <strong>biểu thức Lambda (Lambda Expression)</strong> để xử lý logic ngắn gọn, gọn hơn nhiều so với anonymous class.</p>
+<hr>
+<h1 id="-1-lambda-expression-là-gì">🧠 1. Lambda Expression là gì?</h1>
+<p><strong>Lambda Expression</strong> là cú pháp ngắn gọn đại diện cho <strong>một phương thức</strong> của <strong>Functional Interface</strong> (interface chỉ có 1 phương thức trừu tượng).</p>
+<p>Ví dụ truyền thống:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Runnable r <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Runnable() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Chạy bằng anonymous class&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>r.<span style="color:#a6e22e">run</span>();
+</span></span></code></pre></div><p>➡ Với Lambda:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Runnable r <span style="color:#f92672">=</span> () <span style="color:#f92672">-&gt;</span> System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Chạy bằng Lambda!&#34;</span>);
+</span></span><span style="display:flex;"><span>r.<span style="color:#a6e22e">run</span>();
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>Chạy bằng Lambda!</code></p>
+<hr>
+<h1 id="-2-cú-pháp-lambda-expression">⚙️ 2. Cú pháp Lambda Expression</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>(parameters) <span style="color:#f92672">-&gt;</span> expression
+</span></span><span style="display:flex;"><span>(parameters) <span style="color:#f92672">-&gt;</span> { statements }
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th>Cấu trúc</th>
+          <th>Ví dụ</th>
+          <th>Ý nghĩa</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Lambda đơn giản</td>
+          <td><code>() -&gt; System.out.println(&quot;Hello&quot;)</code></td>
+          <td>Không có tham số</td>
+      </tr>
+      <tr>
+          <td>Có tham số</td>
+          <td><code>(a, b) -&gt; a + b</code></td>
+          <td>Trả về tổng của 2 biến</td>
+      </tr>
+      <tr>
+          <td>Nhiều lệnh</td>
+          <td><code>(x) -&gt; { System.out.println(x); return x * x; }</code></td>
+          <td>Gồm nhiều dòng code</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-3-functional-interface-là-gì">🔁 3. Functional Interface là gì?</h1>
+<p>Functional Interface là <strong>interface chỉ có 1 phương thức trừu tượng</strong>, ví dụ như:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@FunctionalInterface</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Greeting</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sayHello</span>(String name);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Greeting g <span style="color:#f92672">=</span> (n) <span style="color:#f92672">-&gt;</span> System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Xin chào, &#34;</span> <span style="color:#f92672">+</span> n);
+</span></span><span style="display:flex;"><span>        g.<span style="color:#a6e22e">sayHello</span>(<span style="color:#e6db74">&#34;Trang&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>Xin chào, Trang</code></p>
+<hr>
+<h1 id="-4-functional-interface-có-sẵn-trong-java">🧩 4. Functional Interface có sẵn trong Java</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Interface</th>
+          <th>Phương thức chính</th>
+          <th>Mô tả</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Consumer&lt;T&gt;</code></td>
+          <td><code>accept(T t)</code></td>
+          <td>Nhận đầu vào, không trả kết quả</td>
+      </tr>
+      <tr>
+          <td><code>Supplier&lt;T&gt;</code></td>
+          <td><code>get()</code></td>
+          <td>Không đầu vào, có kết quả</td>
+      </tr>
+      <tr>
+          <td><code>Function&lt;T,R&gt;</code></td>
+          <td><code>apply(T t)</code></td>
+          <td>Nhận đầu vào, trả kết quả</td>
+      </tr>
+      <tr>
+          <td><code>Predicate&lt;T&gt;</code></td>
+          <td><code>test(T t)</code></td>
+          <td>Trả về true/false</td>
+      </tr>
+      <tr>
+          <td><code>BiFunction&lt;T,U,R&gt;</code></td>
+          <td><code>apply(T,U)</code></td>
+          <td>Hai đầu vào, một kết quả</td>
+      </tr>
+  </tbody>
+</table>
+<p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.function.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Example</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Predicate<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> isEven <span style="color:#f92672">=</span> (n) <span style="color:#f92672">-&gt;</span> n <span style="color:#f92672">%</span> 2 <span style="color:#f92672">==</span> 0;
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(isEven.<span style="color:#a6e22e">test</span>(4)); <span style="color:#75715e">// true</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h1 id="-5-lambda-trong-collections">⚡ 5. Lambda trong Collections</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LambdaList</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> names <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">asList</span>(<span style="color:#e6db74">&#34;Trang&#34;</span>, <span style="color:#e6db74">&#34;Huyền&#34;</span>, <span style="color:#e6db74">&#34;Java&#34;</span>);
+</span></span><span style="display:flex;"><span>        names.<span style="color:#a6e22e">forEach</span>(n <span style="color:#f92672">-&gt;</span> System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Xin chào &#34;</span> <span style="color:#f92672">+</span> n));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>Xin chào Trang
+Xin chào Huyền
+Xin chào Java
+</code></pre><blockquote>
+<p>💡 Lambda giúp viết code lặp qua danh sách ngắn gọn, dễ đọc hơn.</p></blockquote>
+<hr>
+<h1 id="-6-kết-hợp-stream-api-với-lambda">🔍 6. Kết hợp Stream API với Lambda</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.*;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LambdaStream</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">asList</span>(1,2,3,4,5,6);
+</span></span><span style="display:flex;"><span>        nums.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">filter</span>(n <span style="color:#f92672">-&gt;</span> n <span style="color:#f92672">%</span> 2 <span style="color:#f92672">==</span> 0)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">map</span>(n <span style="color:#f92672">-&gt;</span> n <span style="color:#f92672">*</span> n)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">forEach</span>(System.<span style="color:#a6e22e">out</span>::println);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>4
+16
+36
+</code></pre><blockquote>
+<p>⚙️ Lambda giúp Stream API trở nên mạnh mẽ và dễ hiểu hơn.</p></blockquote>
+<hr>
+<h1 id="-7-method-reference--ngắn-gọn-hơn-lambda">🧮 7. Method Reference – Ngắn gọn hơn Lambda</h1>
+<p>Thay vì:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>names.<span style="color:#a6e22e">forEach</span>(n <span style="color:#f92672">-&gt;</span> System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(n));
+</span></span></code></pre></div><p>Ta có thể viết:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>names.<span style="color:#a6e22e">forEach</span>(System.<span style="color:#a6e22e">out</span>::println);
+</span></span></code></pre></div><p>📜 <strong>Method Reference</strong> là cách tham chiếu đến <strong>một phương thức đã có sẵn</strong>.</p>
+<hr>
+<h1 id="-8-biểu-thức-lambda-với-biến-cục-bộ-scope">🧱 8. Biểu thức Lambda với biến cục bộ (Scope)</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Example</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        String prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Xin chào &#34;</span>;
+</span></span><span style="display:flex;"><span>        Greeting greet <span style="color:#f92672">=</span> (name) <span style="color:#f92672">-&gt;</span> System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(prefix <span style="color:#f92672">+</span> name);
+</span></span><span style="display:flex;"><span>        greet.<span style="color:#a6e22e">sayHello</span>(<span style="color:#e6db74">&#34;Trang&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Greeting</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sayHello</span>(String name);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>💡 Biến bên ngoài (<code>prefix</code>) phải là <strong>final hoặc effectively final</strong>.</p></blockquote>
+<hr>
+<h1 id="-9-so-sánh-lambda-và-anonymous-class">🧠 9. So sánh Lambda và Anonymous Class</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Đặc điểm</th>
+          <th>Anonymous Class</th>
+          <th>Lambda Expression</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Cú pháp</td>
+          <td>Dài dòng</td>
+          <td>Ngắn gọn</td>
+      </tr>
+      <tr>
+          <td>Hiệu năng</td>
+          <td>Tạo lớp ẩn danh riêng</td>
+          <td>Không tạo lớp riêng</td>
+      </tr>
+      <tr>
+          <td>Đọc hiểu</td>
+          <td>Trung bình</td>
+          <td>Rõ ràng hơn</td>
+      </tr>
+      <tr>
+          <td>Dùng cho</td>
+          <td>Interface, Abstract class</td>
+          <td>Functional Interface</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-10-tổng-kết-kiến-thức">🧾 10. Tổng kết kiến thức</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Thành phần</th>
+          <th>Vai trò</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Lambda</strong></td>
+          <td>Viết logic ngắn gọn</td>
+          <td><code>(a,b)-&gt;a+b</code></td>
+      </tr>
+      <tr>
+          <td><strong>Functional Interface</strong></td>
+          <td>Interface 1 phương thức</td>
+          <td><code>@FunctionalInterface</code></td>
+      </tr>
+      <tr>
+          <td><strong>Method Reference</strong></td>
+          <td>Gọi hàm có sẵn</td>
+          <td><code>System.out::println</code></td>
+      </tr>
+      <tr>
+          <td><strong>Predicate / Function / Consumer</strong></td>
+          <td>Interface sẵn có trong Java</td>
+          <td><code>Predicate&lt;T&gt;</code>, <code>Function&lt;T,R&gt;</code></td>
+      </tr>
+      <tr>
+          <td><strong>Scope</strong></td>
+          <td>Biến ngoài phải là final</td>
+          <td><code>prefix + name</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-kết-luận">🎯 Kết luận</h1>
+<ul>
+<li>Lambda giúp viết code Java ngắn gọn, rõ ràng, hiện đại hơn.</li>
+<li>Functional Interface là nền tảng cho lập trình hàm trong Java.</li>
+<li>Khi kết hợp với <strong>Stream API</strong>, Lambda tạo nên sức mạnh của <strong>Java 8+ hiện đại</strong>.</li>
+</ul>
+<blockquote>
+<p>💡 <strong>“Viết ít hơn – Hiểu nhiều hơn với Lambda.”</strong></p></blockquote>
+<hr>
+<h1 id="-tài-liệu-tham-khảo">📚 Tài liệu tham khảo</h1>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">Oracle – Lambda Expressions</a></li>
+<li><a href="https://www.geeksforgeeks.org/functional-interfaces-java/">GeeksForGeeks – Functional Interface</a></li>
+<li><a href="https://www.w3schools.com/java/java_lambda.asp">W3Schools – Java Lambda Expressions</a></li>
+</ul>
+
+    </div>
+
+    <div class="back-link">
+      <a href="/blog/">← Quay lại danh sách bài viết</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .post-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .post-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+  }
+
+  body.dark .post-card {
+    background: #1f2937;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .post-date {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+  }
+
+  .post-content h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+  }
+
+  .post-content p {
+    margin-bottom: 1rem;
+  }
+
+  .post-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+  }
+
+  body.dark .post-content code {
+    background: #374151;
+  }
+
+  pre {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  body.dark pre {
+    background: #111827;
+  }
+
+  .back-link {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .back-link a {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .back-link a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+.post-content a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.post-content a:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+body.dark .post-content a {
+  color: #93c5fd; 
+
+body.dark .post-content a:hover {
+  color: #60a5fa; 
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+</style>
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

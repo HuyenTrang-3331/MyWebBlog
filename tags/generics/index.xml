@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Generics on Lê Thị Huyền Trang</title>
+    <link>https://example.org/tags/generics/</link>
+    <description>Recent content in Generics on Lê Thị Huyền Trang</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/generics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generics trong Java – Viết code tổng quát và an toàn kiểu dữ liệu</title>
+      <link>https://example.org/blog/19-generics-trong-java/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/blog/19-generics-trong-java/</guid>
+      <description>Tìm hiểu Generics trong Java – giúp viết code tổng quát, an toàn kiểu dữ liệu và tái sử dụng hiệu quả. Học cách dùng &amp;lt;T&amp;gt;, &amp;lt;E&amp;gt;, &amp;lt;K,V&amp;gt; trong class, method và interface.</description>
+    </item>
+  </channel>
+</rss>

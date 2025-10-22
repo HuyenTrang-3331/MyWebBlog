@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xử lý ngoại lệ (Exception Handling) trong Java – Giúp chương trình an toàn hơn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<article class="post-container">
+  <div class="post-card">
+    <h1 class="post-title">Xử lý ngoại lệ (Exception Handling) trong Java – Giúp chương trình an toàn hơn</h1>
+    <p class="post-date">🕓 Đăng ngày 25/09/2025</p>
+
+    
+    <img src="/images/exception-handling-trong-java.jpg" alt="Xử lý ngoại lệ (Exception Handling) trong Java – Giúp chương trình an toàn hơn" class="post-image" />
+    
+
+    <div class="post-content">
+      <blockquote>
+<p>☕ <strong>“Lỗi là điều không thể tránh khỏi – nhưng có thể kiểm soát được.”</strong></p></blockquote>
+<p>Khi chương trình Java gặp lỗi, nếu không xử lý đúng cách, chương trình sẽ <strong>dừng đột ngột</strong>.<br>
+Cơ chế <strong>Exception Handling</strong> giúp bạn <strong>bắt, xử lý, và khôi phục</strong> khi có lỗi xảy ra.</p>
+<hr>
+<h1 id="-1-ngoại-lệ-exception-là-gì">🧠 1. Ngoại lệ (Exception) là gì?</h1>
+<p><strong>Exception</strong> là lỗi xuất hiện trong khi chạy chương trình (Runtime Error).<br>
+Khi xảy ra, Java tạo ra một đối tượng <strong>Exception</strong> mô tả lỗi và ném (throw) nó ra ngoài.</p>
+<p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 10, b <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> a <span style="color:#f92672">/</span> b; <span style="color:#75715e">// lỗi chia cho 0</span>
+</span></span></code></pre></div><p>📜 Kết quả: <code>Exception in thread &quot;main&quot; java.lang.ArithmeticException: / by zero</code></p>
+<hr>
+<h1 id="-2-phân-loại-lỗi-trong-java">⚙️ 2. Phân loại lỗi trong Java</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Loại lỗi</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Checked Exception</strong></td>
+          <td>Lỗi kiểm tra lúc biên dịch, bắt buộc xử lý</td>
+          <td><code>IOException</code>, <code>SQLException</code></td>
+      </tr>
+      <tr>
+          <td><strong>Unchecked Exception</strong></td>
+          <td>Lỗi runtime, không bắt buộc xử lý</td>
+          <td><code>NullPointerException</code>, <code>ArithmeticException</code></td>
+      </tr>
+      <tr>
+          <td><strong>Error</strong></td>
+          <td>Lỗi hệ thống, không thể phục hồi</td>
+          <td><code>OutOfMemoryError</code>, <code>StackOverflowError</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-3-cấu-trúc-try-catch-trong-java">🔁 3. Cấu trúc try-catch trong Java</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 10 <span style="color:#f92672">/</span> 0;
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (ArithmeticException e) {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Lỗi: &#34;</span> <span style="color:#f92672">+</span> e.<span style="color:#a6e22e">getMessage</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>Lỗi: / by zero</code></p>
+<blockquote>
+<p>💡 <code>try</code> chứa mã có thể lỗi, <code>catch</code> bắt và xử lý lỗi đó.</p></blockquote>
+<hr>
+<h1 id="-4-khối-finally">🧱 4. Khối finally</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> {1, 2, 3};
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(arr<span style="color:#f92672">[</span>5<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (ArrayIndexOutOfBoundsException e) {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Lỗi mảng: &#34;</span> <span style="color:#f92672">+</span> e);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Dù có lỗi hay không, finally vẫn chạy.&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong></p>
+<pre tabindex="0"><code>Lỗi mảng: java.lang.ArrayIndexOutOfBoundsException
+Dù có lỗi hay không, finally vẫn chạy.
+</code></pre><blockquote>
+<p>✅ <code>finally</code> dùng để đóng file, kết nối, hoặc giải phóng tài nguyên.</p></blockquote>
+<hr>
+<h1 id="-5-nhiều-khối-catch">⚡ 5. Nhiều khối catch</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    String s <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(s.<span style="color:#a6e22e">length</span>());
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (ArithmeticException e) {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Lỗi toán học!&#34;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (NullPointerException e) {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Lỗi null!&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>Lỗi null!</code></p>
+<blockquote>
+<p>⚙️ Các <code>catch</code> được kiểm tra từ trên xuống – cái nào khớp đầu tiên sẽ chạy.</p></blockquote>
+<hr>
+<h1 id="-6-từ-khóa-throw">🧩 6. Từ khóa throw</h1>
+<p>Dùng <code>throw</code> để <strong>ném ra ngoại lệ thủ công</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkAge</span>(<span style="color:#66d9ef">int</span> age) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (age <span style="color:#f92672">&lt;</span> 18)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> ArithmeticException(<span style="color:#e6db74">&#34;Chưa đủ tuổi&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Được phép truy cập&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        checkAge(16);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>Exception in thread &quot;main&quot; java.lang.ArithmeticException: Chưa đủ tuổi</code></p>
+<hr>
+<h1 id="-7-từ-khóa-throws">🧮 7. Từ khóa throws</h1>
+<p><code>throws</code> dùng trong <strong>khai báo hàm</strong> để ném lỗi ra ngoài cho nơi gọi xử lý.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.*;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Example</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readFile</span>() <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        FileReader f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileReader(<span style="color:#e6db74">&#34;data.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>        f.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            readFile();
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Không tìm thấy file.&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>Không tìm thấy file.</code></p>
+<hr>
+<h1 id="-8-tạo-ngoại-lệ-tùy-chỉnh-custom-exception">🧠 8. Tạo ngoại lệ tùy chỉnh (Custom Exception)</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvalidScoreException</span> <span style="color:#66d9ef">extends</span> Exception {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">InvalidScoreException</span>(String message) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(message);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">validate</span>(<span style="color:#66d9ef">int</span> score) <span style="color:#66d9ef">throws</span> InvalidScoreException {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (score <span style="color:#f92672">&lt;</span> 0 <span style="color:#f92672">||</span> score <span style="color:#f92672">&gt;</span> 100)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> InvalidScoreException(<span style="color:#e6db74">&#34;Điểm không hợp lệ!&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            validate(150);
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (InvalidScoreException e) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Lỗi: &#34;</span> <span style="color:#f92672">+</span> e.<span style="color:#a6e22e">getMessage</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Kết quả:</strong> <code>Lỗi: Điểm không hợp lệ!</code></p>
+<hr>
+<h1 id="-9-phân-biệt-throw-và-throws">🔎 9. Phân biệt throw và throws</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Từ khóa</th>
+          <th>Vị trí sử dụng</th>
+          <th>Tác dụng</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>throw</strong></td>
+          <td>Trong thân hàm</td>
+          <td>Ném ngoại lệ cụ thể</td>
+      </tr>
+      <tr>
+          <td><strong>throws</strong></td>
+          <td>Sau tên hàm</td>
+          <td>Khai báo có thể ném lỗi</td>
+      </tr>
+      <tr>
+          <td><strong>Số lượng</strong></td>
+          <td>Một đối tượng</td>
+          <td>Nhiều loại lỗi</td>
+      </tr>
+      <tr>
+          <td><strong>Xử lý lỗi</strong></td>
+          <td>Ngay tại chỗ</td>
+          <td>Nơi gọi quyết định xử lý</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-10-tổng-kết-kiến-thức">🧾 10. Tổng kết kiến thức</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Thành phần</th>
+          <th>Vai trò</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>try-catch</code></td>
+          <td>Bắt và xử lý ngoại lệ</td>
+          <td><code>try { ... } catch(...) { ... }</code></td>
+      </tr>
+      <tr>
+          <td><code>finally</code></td>
+          <td>Luôn chạy, dọn dẹp tài nguyên</td>
+          <td><code>finally { ... }</code></td>
+      </tr>
+      <tr>
+          <td><code>throw</code></td>
+          <td>Ném lỗi thủ công</td>
+          <td><code>throw new Exception()</code></td>
+      </tr>
+      <tr>
+          <td><code>throws</code></td>
+          <td>Khai báo lỗi có thể xảy ra</td>
+          <td><code>void m() throws IOException</code></td>
+      </tr>
+      <tr>
+          <td><strong>Custom Exception</strong></td>
+          <td>Định nghĩa lỗi riêng</td>
+          <td><code>class MyException extends Exception</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-kết-luận">🎯 Kết luận</h1>
+<ul>
+<li>Xử lý ngoại lệ giúp chương trình <strong>ổn định và không bị crash</strong>.</li>
+<li>Biết dùng <code>try-catch-finally</code>, <code>throw</code>, <code>throws</code> là kỹ năng cơ bản của mọi lập trình viên Java.</li>
+<li>Tạo ngoại lệ tùy chỉnh giúp <strong>phản ánh rõ ý nghĩa lỗi trong dự án lớn</strong>.</li>
+</ul>
+<blockquote>
+<p>💡 <strong>“Lỗi không đáng sợ – không xử lý lỗi mới đáng sợ.”</strong></p></blockquote>
+<hr>
+<h1 id="-tài-liệu-tham-khảo">📚 Tài liệu tham khảo</h1>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/">Oracle – Exceptions in Java</a></li>
+<li><a href="https://www.w3schools.com/java/java_try_catch.asp">W3Schools – Java Exception Handling</a></li>
+<li><a href="https://www.geeksforgeeks.org/exceptions-in-java/">GeeksForGeeks – Exception Handling</a></li>
+</ul>
+
+    </div>
+
+    <div class="back-link">
+      <a href="/blog/">← Quay lại danh sách bài viết</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .post-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .post-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+  }
+
+  body.dark .post-card {
+    background: #1f2937;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .post-date {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+  }
+
+  .post-content h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+  }
+
+  .post-content p {
+    margin-bottom: 1rem;
+  }
+
+  .post-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+  }
+
+  body.dark .post-content code {
+    background: #374151;
+  }
+
+  pre {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  body.dark pre {
+    background: #111827;
+  }
+
+  .back-link {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .back-link a {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .back-link a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+.post-content a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.post-content a:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+body.dark .post-content a {
+  color: #93c5fd; 
+
+body.dark .post-content a:hover {
+  color: #60a5fa; 
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+</style>
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

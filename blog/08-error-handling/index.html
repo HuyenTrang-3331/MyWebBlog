@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xử lý lỗi trong JavaScript – Cách viết code an toàn và chuyên nghiệp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="">Profile</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<article class="post-container">
+  <div class="post-card">
+    <h1 class="post-title">Xử lý lỗi trong JavaScript – Cách viết code an toàn và chuyên nghiệp</h1>
+    <p class="post-date">🕓 Đăng ngày 10/10/2025</p>
+
+    
+    <img src="/images/error-handing.jpg" alt="Xử lý lỗi trong JavaScript – Cách viết code an toàn và chuyên nghiệp" class="post-image" />
+    
+
+    <div class="post-content">
+      <blockquote>
+<p>⚠️ <strong>“Code nào cũng có lỗi – quan trọng là bạn xử lý nó ra sao.”</strong></p></blockquote>
+<p>Khi code JavaScript chạy, rất dễ gặp lỗi: cú pháp sai, biến không tồn tại, hoặc API trả về lỗi.<br>
+Biết cách <strong>bắt và xử lý lỗi đúng cách</strong> giúp ứng dụng không bị crash và dễ bảo trì hơn.</p>
+<hr>
+<h1 id="-1-các-loại-lỗi-trong-javascript">🧩 1. Các loại lỗi trong JavaScript</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Loại lỗi</th>
+          <th>Mô tả</th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>SyntaxError</strong></td>
+          <td>Lỗi cú pháp khi code sai</td>
+          <td><code>console.log(&quot;Hello)</code></td>
+      </tr>
+      <tr>
+          <td><strong>ReferenceError</strong></td>
+          <td>Gọi biến chưa khai báo</td>
+          <td><code>console.log(x)</code></td>
+      </tr>
+      <tr>
+          <td><strong>TypeError</strong></td>
+          <td>Sử dụng sai kiểu dữ liệu</td>
+          <td><code>null.toString()</code></td>
+      </tr>
+      <tr>
+          <td><strong>RangeError</strong></td>
+          <td>Vượt giới hạn cho phép</td>
+          <td><code>new Array(-5)</code></td>
+      </tr>
+      <tr>
+          <td><strong>CustomError</strong></td>
+          <td>Lỗi do lập trình viên tạo</td>
+          <td><code>throw new Error(&quot;Invalid input&quot;)</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-2-bắt-lỗi-với-trycatch">🧠 2. Bắt lỗi với <code>try...catch</code></h1>
+<p>Cấu trúc cơ bản:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Code có thể gây lỗi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#e6db74">&#34;{name: &#39;Trang&#39;}&#34;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Đã xảy ra lỗi:&#34;</span>, <span style="color:#a6e22e">error</span>.<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>📜 <strong>Giải thích:</strong></p>
+<ul>
+<li><code>try</code> chứa đoạn code có nguy cơ lỗi.</li>
+<li><code>catch</code> nhận đối tượng <code>error</code> khi lỗi xuất hiện.</li>
+<li><code>error.message</code> giúp bạn biết chi tiết lỗi.</li>
+</ul>
+<hr>
+<h1 id="-3-sử-dụng-finally">⚙️ 3. Sử dụng <code>finally</code></h1>
+<p><code>finally</code> luôn chạy, dù có lỗi hay không:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Đang xử lý...&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Có lỗi rồi!&#34;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Bắt lỗi:&#34;</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Hoàn tất xử lý.&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>🧩 <strong>Ứng dụng:</strong> dọn dẹp tài nguyên, đóng kết nối, reset trạng thái.</p>
+<hr>
+<h1 id="-4-tự-tạo-lỗi-với-throw">💣 4. Tự tạo lỗi với <code>throw</code></h1>
+<p>Bạn có thể chủ động tạo lỗi để kiểm soát luồng xử lý:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">divide</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Không thể chia cho 0!&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">divide</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>));
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Lỗi:&#34;</span>, <span style="color:#a6e22e">error</span>.<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>💡 <strong>Mẹo:</strong> <code>throw</code> giúp bạn ngăn code tiếp tục chạy khi gặp tình huống sai logic.</p>
+<hr>
+<h1 id="-5-bắt-lỗi-trong-promise">🔄 5. Bắt lỗi trong Promise</h1>
+<p>Khi làm việc với bất đồng bộ, lỗi xảy ra trong Promise phải dùng <code>.catch()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;https://api.sai-url.com&#34;</span>)
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">res</span> =&gt; <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>())
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">err</span> =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Lỗi khi gọi API:&#34;</span>, <span style="color:#a6e22e">err</span>));
+</span></span></code></pre></div><p>Hoặc dùng <code>try...catch</code> trong <code>async/await</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getData</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;https://api.sai-url.com&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>();
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Lỗi async:&#34;</span>, <span style="color:#a6e22e">error</span>.<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h1 id="-6-tạo-class-lỗi-riêng">🧱 6. Tạo class lỗi riêng</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ValidationError</span> <span style="color:#66d9ef">extends</span> Error {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">message</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ValidationError&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">validateEmail</span>(<span style="color:#a6e22e">email</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">email</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;@&#34;</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ValidationError</span>(<span style="color:#e6db74">&#34;Email không hợp lệ!&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validateEmail</span>(<span style="color:#e6db74">&#34;abc.com&#34;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>🧩 <strong>Ưu điểm:</strong> giúp phân loại lỗi và debug nhanh hơn.</p>
+<hr>
+<h1 id="-7-một-số-lỗi-phổ-biến-và-cách-tránh">📜 7. Một số lỗi phổ biến và cách tránh</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Tình huống</th>
+          <th>Lỗi thường gặp</th>
+          <th>Cách xử lý</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Dữ liệu JSON sai</td>
+          <td><code>Unexpected token</code></td>
+          <td>Dùng <code>try...catch</code> khi <code>JSON.parse()</code></td>
+      </tr>
+      <tr>
+          <td>API lỗi</td>
+          <td><code>NetworkError</code></td>
+          <td>Kiểm tra <code>response.ok</code></td>
+      </tr>
+      <tr>
+          <td>Truy cập null</td>
+          <td><code>Cannot read property</code></td>
+          <td>Dùng <code>?.</code> hoặc kiểm tra null</td>
+      </tr>
+      <tr>
+          <td>Hàm chưa tồn tại</td>
+          <td><code>is not a function</code></td>
+          <td>Kiểm tra biến trước khi gọi</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-8-tổng-kết">🧾 8. Tổng kết</h1>
+<table>
+  <thead>
+      <tr>
+          <th>Kỹ thuật</th>
+          <th>Mục đích</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>try...catch</code></td>
+          <td>Bắt và xử lý lỗi đồng bộ</td>
+      </tr>
+      <tr>
+          <td><code>finally</code></td>
+          <td>Chạy code dọn dẹp</td>
+      </tr>
+      <tr>
+          <td><code>throw</code></td>
+          <td>Chủ động ném lỗi</td>
+      </tr>
+      <tr>
+          <td><code>.catch()</code></td>
+          <td>Bắt lỗi Promise</td>
+      </tr>
+      <tr>
+          <td><code>async/await</code></td>
+          <td>Xử lý lỗi bất đồng bộ dễ đọc</td>
+      </tr>
+      <tr>
+          <td><code>Custom Error Class</code></td>
+          <td>Định nghĩa lỗi riêng</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="-kết-luận">🎯 Kết luận</h1>
+<ul>
+<li>Luôn <strong>bao quanh đoạn code nguy hiểm bằng <code>try...catch</code></strong>.</li>
+<li>Dùng <code>throw</code> khi muốn báo lỗi logic rõ ràng.</li>
+<li>Khi làm việc với API hay async, đừng quên <code>.catch()</code> hoặc <code>try...catch</code>.</li>
+<li>Việc xử lý lỗi chuyên nghiệp giúp ứng dụng <strong>ổn định, dễ bảo trì, và an toàn hơn.</strong></li>
+</ul>
+<blockquote>
+<p>💡 <strong>“Một lập trình viên giỏi không phải là người không bao giờ sai – mà là người biết xử lý khi sai.”</strong></p></blockquote>
+
+    </div>
+
+    <div class="back-link">
+      <a href="/blog/">← Quay lại danh sách bài viết</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .post-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .post-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+  }
+
+  body.dark .post-card {
+    background: #1f2937;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .post-date {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+  }
+
+  .post-content h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+  }
+
+  .post-content p {
+    margin-bottom: 1rem;
+  }
+
+  .post-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+  }
+
+  body.dark .post-content code {
+    background: #374151;
+  }
+
+  pre {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  body.dark pre {
+    background: #111827;
+  }
+
+  .back-link {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .back-link a {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .back-link a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+.post-content a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.post-content a:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+body.dark .post-content a {
+  color: #93c5fd; 
+
+body.dark .post-content a:hover {
+  color: #60a5fa; 
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+}
+
+</style>
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

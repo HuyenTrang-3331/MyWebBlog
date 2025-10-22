@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lê Thị Huyền Trang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --link-hover: #2563eb;
+      --border-color: #e5e7eb;
+    }
+
+    body.dark {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --border-color: #374151;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+     
+    header {
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      font-weight: 800 !important;
+      font-size: 1.6rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-color);
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-color) !important;
+      position: relative;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+     
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--link-hover);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--link-hover);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+     
+    footer {
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    footer a {
+      color: var(--link-hover);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+     
+    @media (max-width: 800px) {
+      header {
+        padding: 1rem 6%;
+      }
+
+      .logo {
+        font-size: 1.3rem !important;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="/" class="">Home</a>
+      <a href="/profile/" class="active">Profile</a>
+      <a href="/blog/" class="">Blog</a>
+      <a href="/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<style>
+body {
+  font-family: "Poppins", "Inter", sans-serif;
+  background: #f4f5f7;
+  margin: 0;
+  color: #333;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+ 
+.cv-container {
+  max-width: 850px;
+  margin: 0 auto 80px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+ 
+.cv-container::before {
+  content: "";
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #d9dce2;
+  opacity: 0.6;
+}
+.cv-container::after {
+  content: "";
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #d9dce2;
+  opacity: 0.5;
+}
+
+ 
+.header {
+  display: flex;
+  align-items: center;
+  padding: 60px 50px 20px;
+  border-bottom: 2px solid #eee;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+.header .blue-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 45%;
+  height: 280px;
+  background: #1c2b4a;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 80px;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+.header img {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 8px solid #fff;
+  position: relative;
+  margin-right: 40px;
+  z-index: 3;
+  margin-left: 25px;
+}
+.header .info {
+  position: relative;
+  z-index: 2;
+  margin-left: 30px;
+}
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1c2b4a;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+.header h2 {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 400;
+  margin-top: 6px;
+}
+
+ 
+.cv-content {
+  display: grid;
+  grid-template-columns: 35% 60%;
+  gap: 5%;
+  padding: 30px 50px 60px;
+}
+
+ 
+.left-col h3 {
+  background: #1c2b4a;
+  color: #fff;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.left-col p, .left-col li {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.left-col ul {
+  list-style: none;
+  padding-left: 0;
+}
+.left-col ul li::before {
+  content: "•";
+  color: #1c2b4a;
+  margin-right: 6px;
+  font-weight: 700;
+}
+.contact p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+  font-size: 0.85rem;
+}
+.contact p i {
+  background: #1c2b4a;
+  color: #fff;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+ 
+.right-col h3 {
+  background: #1c2b4a;
+  color: #fff;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.job { margin-bottom: 15px; }
+.job h4 {
+  font-size: 0.95rem;
+  color: #1c2b4a;
+  font-weight: 600;
+  margin: 0;
+}
+.job span {
+  display: block;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+.job p {
+  font-size: 0.85rem;
+  color: #444;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+ 
+.skill-summary p {
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+.progress {
+  background: #e4e6eb;
+  height: 6px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+}
+.progress-bar {
+  background: #1c2b4a;
+  height: 6px;
+}
+
+ 
+body.dark {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+body.dark .cv-container {
+  background: #1e293b;
+  color: #f1f5f9;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+}
+body.dark .header {
+  border-bottom-color: #334155;
+}
+body.dark .header .blue-bar {
+  background: #0f172a;
+}
+body.dark .header h1 {
+  color: #f8fafc;
+}
+body.dark .header h2 {
+  color: #94a3b8;
+}
+body.dark .left-col h3,
+body.dark .right-col h3 {
+  background: #3b82f6;
+}
+body.dark .job h4 {
+  color: #f8fafc;
+}
+body.dark .job span {
+  color: #cbd5e1;
+}
+body.dark .job p {
+  color: #e2e8f0;
+}
+body.dark .contact p i {
+  background: #3b82f6;
+}
+body.dark .progress {
+  background: #334155;
+}
+body.dark .progress-bar {
+  background: #3b82f6;
+}
+
+ 
+@media(max-width:850px){
+  .cv-content{grid-template-columns:1fr}
+  .header{flex-direction:column;text-align:center}
+  .header img{margin:0 0 15px}
+  .header .blue-bar{width:100%;height:220px}
+}
+</style>
+
+<div class="cv-container">
+  <div class="header">
+    <div class="blue-bar"></div>
+    <img src="/images/avatar.jpg" alt="Avatar">
+    <div class="info">
+      <h1>LÊ THỊ HUYỀN TRANG</h1>
+      <h2>Tester</h2>
+    </div>
+  </div>
+
+  <div class="cv-content">
+    <div class="left-col">
+      <div>
+        <h3>About Me</h3>
+        <p>Đam mê lập trình và công nghệ, có kinh nghiệm phát triển web, kiểm thử và phân tích nghiệp vụ phần mềm. 
+        Luôn học hỏi và mong muốn tạo ra sản phẩm mang lại giá trị thực tế.</p>
+      </div>
+
+      <div class="contact">
+        <h3>Contact</h3>
+        <p><i>📞</i> 0818021662</p>
+        <p><i>✉️</i> htrang11022004@gmail.com</p>
+        <p><i>📍</i> TP. Hồ Chí Minh</p>
+      </div>
+
+      <div>
+        <h3>Language</h3>
+        <ul>
+          <li>Vietnamese (Native)</li>
+          <li>English (Intermediate)</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Expertise</h3>
+        <ul>
+          <li>Java/ JavaScript/ Spring Boot</li>
+          <li>HTML / CSS / JavaScript</li>
+          <li>Automation Testing</li>
+          <li>Use Case / UML / BA</li>
+          <li>Game Development (Unity)</li>
+          <li>Teamwork & Leadership</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="right-col">
+      <section>
+        <h3>Experience</h3>
+
+        <div class="job">
+            <h4>Intern QA Engineer — KMS Technology</h4>
+            <span> 2024 – 2025</span>
+            <p>
+            Tham gia kiểm thử chức năng và hiệu năng cho ứng dụng web nội bộ sử dụng 
+            <strong>Java (Spring Boot)</strong> và <strong>ReactJS</strong>.<br>
+            Thực hiện <strong>Manual Testing</strong>, viết và thực thi <strong>Test Case</strong>, 
+            báo cáo lỗi bằng <strong>Jira</strong> và xác nhận fix từ dev team.<br>
+            Học cách sử dụng <strong>Postman</strong> để kiểm thử API và phối hợp Agile cùng nhóm phát triển.
+            </p>
+        </div>
+
+        <div class="job">
+            <h4>Freelance QA Tester — Remote</h4>
+            <span>2024 - 2025</span>
+            <p>
+            Hỗ trợ kiểm thử website và ứng dụng di động cho các dự án freelance nhỏ.<br>
+            Thiết kế kịch bản test (test scenario) và báo cáo bug rõ ràng cho developer.<br>
+            Làm quen với công cụ <strong>TestRail</strong>, <strong>Postman</strong> và quy trình kiểm thử phần mềm chuẩn ISTQB.
+            </p>
+        </div>
+        </section>
+
+
+      <section>
+        <h3>Education</h3>
+        <div class="job">
+          <h4>ĐẠI HỌC CÔNG NGHỆ – TP.HCM</h4>
+          <span>Bachelor of Software Engineering | 2022– 2026</span>
+          <p>GPA: 3.68 / 4.00</p>
+        </div>
+      </section>
+
+      <section class="skill-summary">
+        <h3>Skills Summary</h3>
+        <p>Java Development <span>90%</span></p>
+        <div class="progress"><div class="progress-bar" style="width:90%"></div></div>
+
+        <p>Automation Testing <span>80%</span></p>
+        <div class="progress"><div class="progress-bar" style="width:80%"></div></div>
+
+        <p>Business Analysis <span>75%</span></p>
+        <div class="progress"><div class="progress-bar" style="width:75%"></div></div>
+
+        <p>Team Collaboration <span>85%</span></p>
+        <div class="progress"><div class="progress-bar" style="width:85%"></div></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>
