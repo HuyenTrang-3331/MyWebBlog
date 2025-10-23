@@ -6,6 +6,64 @@
   <title>Categories</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
+  
+<body>
+  
+  <header id="siteHeader">
+    <div class="logo">
+      <strong>Lê Thị Huyền Trang</strong>
+      <span class="theme-toggle" id="themeToggle">🌙</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="https://huyentrang-3331.github.io/MyWebBlog/" class="">Home</a>
+      <a href="https://huyentrang-3331.github.io/MyWebBlog/profile/" class="">Profile</a>
+      <a href="https://huyentrang-3331.github.io/MyWebBlog/blog/" class="">Blog</a>
+      <a href="https://huyentrang-3331.github.io/MyWebBlog/contact/" class="">Contact</a>
+    </nav>
+  </header>
+
+  
+  <main>
+    
+<header class="page-header">
+    <h1>Categories</h1>
+</header>
+
+<ul class="terms-tags">
+</ul>
+  </main>
+
+  
+  <footer>
+    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
+    <a href="https://github.com/">GitHub</a> |
+    <a href="https://linkedin.com/">LinkedIn</a>
+  </footer>
+
+  
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const header = document.getElementById('siteHeader');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const darkMode = body.classList.contains('dark');
+      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  </script>
   <style>
     :root {
       --bg-color: #ffffff;
@@ -144,64 +202,6 @@
       }
     }
   </style>
-</head>
 
-<body>
-  
-  <header id="siteHeader">
-    <div class="logo">
-      <strong>Lê Thị Huyền Trang</strong>
-      <span class="theme-toggle" id="themeToggle">🌙</span>
-    </div>
-
-    <nav class="nav-links">
-      <a href="https://huyentrang-3331.github.io/MyWebBlog/" class="">Home</a>
-      <a href="https://huyentrang-3331.github.io/MyWebBlog/profile/" class="">Profile</a>
-      <a href="https://huyentrang-3331.github.io/MyWebBlog/blog/" class="">Blog</a>
-      <a href="https://huyentrang-3331.github.io/MyWebBlog/contact/" class="">Contact</a>
-    </nav>
-  </header>
-
-  
-  <main>
-    
-<header class="page-header">
-    <h1>Categories</h1>
-</header>
-
-<ul class="terms-tags">
-</ul>
-  </main>
-
-  
-  <footer>
-    © 2025 <strong>Lê Thị Huyền Trang</strong> — Blog lập trình mạng |
-    <a href="https://github.com/">GitHub</a> |
-    <a href="https://linkedin.com/">LinkedIn</a>
-  </footer>
-
-  
-  <script>
-    const toggleBtn = document.getElementById('themeToggle');
-    const body = document.body;
-    const header = document.getElementById('siteHeader');
-
-    if (localStorage.getItem('theme') === 'dark') {
-      body.classList.add('dark');
-      toggleBtn.textContent = '☀️';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark');
-      const darkMode = body.classList.contains('dark');
-      toggleBtn.textContent = darkMode ? '☀️' : '🌙';
-      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
-    });
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) header.classList.add('scrolled');
-      else header.classList.remove('scrolled');
-    });
-  </script>
 </body>
 </html>
